@@ -1,0 +1,160 @@
+// A new client object
+{
+    "last_name": "Fang",
+    "first_name": "Bo",
+    "middle_name": "Foo",
+    "gender": "M",
+    "sin": "11111111",
+    "birthdate": "2000-01-01",
+    "is_new_client": true
+}
+
+// A client object from existing clinet:
+{
+    "phone_list": [
+        {
+            "clients": [
+                "http://localhost:8000/api/clients/1/"
+            ],
+            "area_code": "778",
+            "phone_number": "8632004",
+            "phone_type": {
+                "phone_type_name": "cell",
+                "description": "Cellular Phone"
+            },
+            "is_primary": true,
+            "is_active": true,
+            "is_archived": false,
+            "notes": null
+        },
+        {
+            "clients": [
+                "http://localhost:8000/api/clients/1/"
+            ],
+            "area_code": "604",
+            "phone_number": "5943487",
+            "phone_type": null,
+            "is_primary": false,
+            "is_active": true,
+            "is_archived": false,
+            "notes": null
+        }
+    ],
+    "id": 1,
+    "first_name": "Joe",
+    "middle_name": "Yi",
+    "birthdate": "2022-12-09",
+    "last_name": "Fang",
+    "sin": "",
+    "gender": null,
+    "client_addresses": [
+        {
+            "id": 1,
+            "address": {
+                "id": 1,
+                "unit_number": null,
+                "street_address": "12345 ABC St.",
+                "city": "Richmond",
+                "province_state": {
+                    "province_state_name": "British Columbia",
+                    "province_state_code": "BC",
+                    "country": "http://localhost:8000/api/country/1/"
+                },
+                "country": {
+                    "country_name": "Canada",
+                    "country_code": "CA",
+                    "provinces_states": [
+                        {
+                            "province_state_name": "British Columbia",
+                            "province_state_code": "BC",
+                            "country": "http://localhost:8000/api/country/1/"
+                        },
+                        {
+                            "province_state_name": "Alberta",
+                            "province_state_code": "AB",
+                            "country": "http://localhost:8000/api/country/1/"
+                        }
+                    ]
+                },
+                "postal_code": "V3A4A2",
+                "address_type": "http://localhost:8000/api/addresstype/1/",
+                "description": "good place"
+            },
+            "client": "http://localhost:8000/api/clients/1/",
+            "description": null
+        },
+        {
+            "id": 2,
+            "address": {
+                "id": 1,
+                "unit_number": null,
+                "street_address": "12345 ABC St.",
+                "city": "Richmond",
+                "province_state": {
+                    "province_state_name": "British Columbia",
+                    "province_state_code": "BC",
+                    "country": "http://localhost:8000/api/country/1/"
+                },
+                "country": {
+                    "country_name": "Canada",
+                    "country_code": "CA",
+                    "provinces_states": [
+                        {
+                            "province_state_name": "British Columbia",
+                            "province_state_code": "BC",
+                            "country": "http://localhost:8000/api/country/1/"
+                        },
+                        {
+                            "province_state_name": "Alberta",
+                            "province_state_code": "AB",
+                            "country": "http://localhost:8000/api/country/1/"
+                        }
+                    ]
+                },
+                "postal_code": "V3A4A2",
+                "address_type": "http://localhost:8000/api/addresstype/1/",
+                "description": "good place"
+            },
+            "client": "http://localhost:8000/api/clients/1/",
+            "description": "Weekend Only"
+        },
+        {
+            "id": 3,
+            "address": {
+                "id": 2,
+                "unit_number": null,
+                "street_address": "5432 Long St.",
+                "city": "Delta",
+                "province_state": {
+                    "province_state_name": "British Columbia",
+                    "province_state_code": "BC",
+                    "country": "http://localhost:8000/api/country/1/"
+                },
+                "country": {
+                    "country_name": "Canada",
+                    "country_code": "CA",
+                    "provinces_states": [
+                        {
+                            "province_state_name": "British Columbia",
+                            "province_state_code": "BC",
+                            "country": "http://localhost:8000/api/country/1/"
+                        },
+                        {
+                            "province_state_name": "Alberta",
+                            "province_state_code": "AB",
+                            "country": "http://localhost:8000/api/country/1/"
+                        }
+                    ]
+                },
+                "postal_code": "V3K2S3",
+                "address_type": "http://localhost:8000/api/addresstype/1/",
+                "description": null
+            },
+            "client": "http://localhost:8000/api/clients/1/",
+            "description": "Mondays"
+        }
+    ],
+    "created_by": "http://localhost:8000/api/users/1/",
+    "created_date": "2022-12-09T05:14:08.202364Z",
+    "modified_date": "2022-12-09T05:14:08.202370Z"
+}
