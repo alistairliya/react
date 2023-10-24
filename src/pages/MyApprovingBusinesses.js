@@ -11,7 +11,7 @@ import BusinessDetails from '../components/BusinessDetails'
 import { useAuth } from "../hooks/useAuth";
 import Select from 'react-select' // https://react-select.com/home
 import { AiFillCodeSandboxSquare } from 'react-icons/ai'
-import {FE_URL} from '../constants'
+import {FE_URL, ROOT_URL} from '../constants'
 
 function MyApprovingBusinesses() {
 
