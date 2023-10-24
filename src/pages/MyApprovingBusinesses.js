@@ -11,7 +11,7 @@ import BusinessDetails from '../components/BusinessDetails'
 import { useAuth } from "../hooks/useAuth";
 import Select from 'react-select' // https://react-select.com/home
 import { AiFillCodeSandboxSquare } from 'react-icons/ai'
-import {ROOT_URL} from '../constants'
+import {FE_URL} from '../constants'
 
 function MyApprovingBusinesses() {
 
@@ -45,7 +45,7 @@ function MyApprovingBusinesses() {
     const auth_str = 'Token '+token 
     console.log(auth_str)
     headers.set('Authorization', auth_str)
-    const res = await fetch(ROOT_URL+'/api/businessapproval/',{headers:headers})
+    const res = await fetch(FE_URL+'/api/businessapproval/',{headers:headers})
     const data = await res.json()
     console.log(data)
     return data
@@ -111,7 +111,7 @@ function MyApprovingBusinesses() {
 
 
         <div>
-        <a href="http://localhost:3000/me/dashboard">Dashboard</a>
+        <a href={FE_URL+"/me/dashboard"}>Dashboard</a>
         </div>
 
               <header className='header'>

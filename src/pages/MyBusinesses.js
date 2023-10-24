@@ -8,7 +8,7 @@ import NewBusiness from '../components/NewBusiness'
 import BusinessDetails from '../components/BusinessDetails'
 //import About from '../components/About' 
 import { useAuth } from "../hooks/useAuth";
-import {ROOT_URL} from '../constants'
+import {ROOT_URL, FE_URL} from '../constants'
 function MyBusinesses() {
 
     const { user } = useAuth();
@@ -114,7 +114,7 @@ function MyBusinesses() {
   return (
     <div className="container">
        <div>
-        <a href="http://localhost:3000/me/dashboard">Dashboard</a>
+        <a href={FE_URL+"/me/dashboard"}>Dashboard</a>
         </div>
       <Booga 
         title='My Businesses'
