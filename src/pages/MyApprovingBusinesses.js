@@ -45,7 +45,7 @@ function MyApprovingBusinesses() {
     const auth_str = 'Token '+token 
     console.log(auth_str)
     headers.set('Authorization', auth_str)
-    const res = await fetch(FE_URL+'/api/businessapproval/',{headers:headers})
+    const res = await fetch(ROOT_URL+'/api/businessapproval/',{headers:headers})
     const data = await res.json()
     console.log(data)
     return data
