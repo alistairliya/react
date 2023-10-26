@@ -3,13 +3,23 @@
 import {useState, useEffect} from 'react'
 import Select from 'react-select' // https://react-select.com/home
 
-const NBF8Advisor = ({id, users, roles, updateAdvisor, selectedAdvisors, collaboratorStatuses, collaboratorPositions, writeAccess}) => {
+const NBF8Advisor = ({
+    id, // this id was defined by the calling component. It starts from 1000 and increment. Not the ID on the DB.
+    users, 
+    roles, 
+    updateAdvisor, 
+    selectedAdvisors, // selectedAdvisors[id] <= if this component should be loaded with a collaborator 
+    collaboratorStatuses, 
+    collaboratorPositions, 
+    writeAccess
+}) => {
     const [role, setRole] = useState({})
     const [advisor, setAdvisor] = useState({})
     const [collaboratorStatus, setCollaboratorStatus] = useState({})
     const [collaboratorPosition, setCollaboratorPosition] = useState({})
     const [cfcCode, setCfcCode] = useState('')
     const [split, setSplit] = useState(0)
+    
 
     const roleOptions = roles.map(
         (role)=>({
@@ -76,7 +86,17 @@ const NBF8Advisor = ({id, users, roles, updateAdvisor, selectedAdvisors, collabo
   
     return (
         <div>
-            <h3>{/*"Debug "+id */}</h3>
+            <p>{id}</p>
+            <p>{JSON.stringify(selectedAdvisors[id], null, '\t')}</p>
+            <p>{JSON.stringify(users, null, '\t')}</p>
+            <p>{
+                        selectedAdvisors[id] && 
+                        selectedAdvisors[id].advisor && 
+                        selectedAdvisors[id].advisor.first_name && 
+                        selectedAdvisors[id].advisor.last_name? 
+                            selectedAdvisors[id].advisor.first_name+' '+selectedAdvisors[id].advisor.last_name:
+                            'Advisor'
+            }</p>
             <div className="form-control">
                 <label>Advisor:</label>
                 <Select
