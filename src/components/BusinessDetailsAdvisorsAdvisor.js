@@ -1,4 +1,9 @@
+/*
+THIS MODULE IS NEVER USED. INSTEAD, NBF8Advisor is used
+*/
 
+
+/*
 import {useState, useEffect} from 'react'
 import {useAuth} from '../hooks/useAuth'
 import Select from 'react-select' // https://react-select.com/home
@@ -66,7 +71,6 @@ const BusinessDetailsAdvisorsAdvisor = ({
 
     return (
         <div>
-            <h3>{/*"Debug "+id */}</h3>
             <div className="form-control">
                 <label>Advisor:</label>
                 <Select
@@ -158,3 +162,5 @@ const BusinessDetailsAdvisorsAdvisor = ({
 }
 
 export default BusinessDetailsAdvisorsAdvisor
+
+*/

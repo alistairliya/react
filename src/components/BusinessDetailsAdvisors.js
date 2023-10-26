@@ -2,7 +2,6 @@
 import {useState, useEffect} from 'react'
 import {useAuth} from '../hooks/useAuth'
 import NBF8Advisor from './NBF8Advisor'
-import BusinessDetailsAdvisorsAdvisor from './BusinessDetailsAdvisorsAdvisor'
 import Button from './Button'
 import {ROOT_URL} from '../constants'
 const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess}) => {
