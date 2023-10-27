@@ -8,7 +8,7 @@ const NBF8Advisor = ({
     users, 
     roles, 
     updateAdvisor, 
-    selectedAdvisors, // selectedAdvisors[id] <= if this component should be loaded with a collaborator 
+    selectedAdvisors, // selectedAdvisors[id] <= if this component should be loaded with a collaborator in the businessuser object (Business_User model)
     collaboratorStatuses, 
     collaboratorPositions, 
     writeAccess
@@ -87,8 +87,12 @@ const NBF8Advisor = ({
     return (
         <div>
             <p>{id}</p>
-            <p>{JSON.stringify(selectedAdvisors[id], null, '\t')}</p>
-            <p>{JSON.stringify(users, null, '\t')}</p>
+            <p>{
+            JSON.stringify(selectedAdvisors[id], null, '\t') // "Converting circular structure to JSON" when creating new collaborator.
+            }</p>
+            <p>{
+            //JSON.stringify(users, null, '\t')
+            }</p>
             <p>{
                         selectedAdvisors[id] && 
                         selectedAdvisors[id].advisor && 
