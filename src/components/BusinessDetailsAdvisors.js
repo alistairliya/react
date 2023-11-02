@@ -122,6 +122,8 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess}) => {
         newAdvisors[key] = value
         setAdvisors(newAdvisors)
         setEditMode(true)
+        console.log(newAdvisors)
+        console.log(advisors)
     }
 
 

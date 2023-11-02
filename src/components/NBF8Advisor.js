@@ -61,7 +61,7 @@ const NBF8Advisor = ({
                 console.log(selectedAdvisors[id].role)
                 setRole(selectedAdvisors[id].role)
             }
-            if(selectedAdvisors[id].advisor){
+            if(selectedAdvisors[id].advisor){ // <- Start from here, eg: "user": "http://localhost:8000/api/users/21/"
                 console.log('selectedAdvisors[id].advisor')
                 console.log(selectedAdvisors[id].advisor)
                 setAdvisor(selectedAdvisors[id].advisor)
@@ -88,7 +88,7 @@ const NBF8Advisor = ({
         <div>
             <p>{id}</p>
             <p>{
-            JSON.stringify(selectedAdvisors[id], null, '\t') // "Converting circular structure to JSON" when creating new collaborator.
+            selectedAdvisors['10001']? JSON.stringify(selectedAdvisors, null, '\t'):String(selectedAdvisors['0']) // "Converting circular structure to JSON" when creating new collaborator.// {0:{}}
             }</p>
             <p>{
             //JSON.stringify(users, null, '\t')
