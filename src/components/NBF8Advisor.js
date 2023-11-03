@@ -2,6 +2,8 @@
 
 import {useState, useEffect} from 'react'
 import Select from 'react-select' // https://react-select.com/home
+import {useAuth} from '../hooks/useAuth'
+import {ROOT_URL} from '../constants'
 
 const NBF8Advisor = ({
     id, // this id was defined by the calling component. It starts from 1000 and increment. Not the ID on the DB.
@@ -13,8 +15,9 @@ const NBF8Advisor = ({
     collaboratorPositions, 
     writeAccess
 }) => {
+    const {user} = useAuth()
     const [role, setRole] = useState({})
-    const [advisor, setAdvisor] = useState({})
+    const [advisor, setAdvisor] = useState()
     const [collaboratorStatus, setCollaboratorStatus] = useState({})
     const [collaboratorPosition, setCollaboratorPosition] = useState({})
     const [cfcCode, setCfcCode] = useState('')
@@ -49,6 +52,17 @@ const NBF8Advisor = ({
         })
     )
 
+    const fetchResource = async(resourceURL)=>{
+        let headers = new Headers()
+        const token = user['token']
+        const auth_str = 'Token '+token
+        console.log(auth_str)
+        headers.set('Authorization', auth_str)
+        const res = await fetch(resourceURL, {headers:headers})
+        const data = await res.json()
+        return data
+    }
+
     useEffect(()=>{
         console.log('>>>>>>>>>>>>>>>>>>>> useEffect for NBF8Advisor ID: '+id)
         console.log('selectedAdvisors:')
@@ -60,11 +74,18 @@ const NBF8Advisor = ({
                 console.log('selectedAdvisors[id].role')
                 console.log(selectedAdvisors[id].role)
                 setRole(selectedAdvisors[id].role)
-            }
-            if(selectedAdvisors[id].advisor){ // <- Start from here, eg: "user": "http://localhost:8000/api/users/21/"
-                console.log('selectedAdvisors[id].advisor')
-                console.log(selectedAdvisors[id].advisor)
-                setAdvisor(selectedAdvisors[id].advisor)
+            } 
+            if(selectedAdvisors[id].user  && !advisor){ // <- Start from here, eg: "user": "http://localhost:8000/api/users/21/"
+                const getAdvisor = async ()=>{
+                    const theUser = await fetchResource(selectedAdvisors[id].user)
+                    await setAdvisor(theUser)
+                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Loaded Advisor")
+                    console.log(JSON.stringify(theUser))
+                }
+                //console.log('selectedAdvisors[id].advisor')
+                //console.log(selectedAdvisors[id].advisor)
+                //setAdvisor(selectedAdvisors[id].advisor)
+                getAdvisor()
             }
             if(selectedAdvisors[id].collaboratorStatus){
                 console.log('selectedAdvisors[id].collaboratorStatus')
@@ -87,12 +108,7 @@ const NBF8Advisor = ({
     return (
         <div>
             <p>{id}</p>
-            <p>{
-            selectedAdvisors['10001']? JSON.stringify(selectedAdvisors, null, '\t'):String(selectedAdvisors['0']) // "Converting circular structure to JSON" when creating new collaborator.// {0:{}}
-            }</p>
-            <p>{
-            //JSON.stringify(users, null, '\t')
-            }</p>
+            <p>{advisor? JSON.stringify(advisor):""}</p>
             <p>{
                         selectedAdvisors[id] && 
                         selectedAdvisors[id].advisor && 
