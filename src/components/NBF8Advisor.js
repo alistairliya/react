@@ -119,12 +119,6 @@ const NBF8Advisor = ({
                     isDisabled={!writeAccess}
                     options={advisorOptions}
                     placeholder={
-                        //selectedAdvisors[id] && 
-                        //selectedAdvisors[id].advisor && 
-                        //selectedAdvisors[id].advisor.first_name && 
-                        //selectedAdvisors[id].advisor.last_name? 
-                        //    selectedAdvisors[id].advisor.first_name+' '+selectedAdvisors[id].advisor.last_name:
-                        //    'Advisor'
                         advisor? (advisor.first_name.trim()!==''&&advisor.last_name.trim()!==''?advisor.first_name+' '+advisor.last_name: (advisor.username?advisor.username:"?")):"Select Advisor"
                         
                     }//'Select Advisor'
