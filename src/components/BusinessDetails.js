@@ -338,6 +338,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         const updatedResult = await fetchResult.json()
         const errors = updatedResult['result']
         if(errors.length === 0){
+            setUpdateCounter(updateCounter + 1)
             console.log('no errors')
             setUpdateErrors(['Update successful'])
             alert('Update successful')
@@ -408,7 +409,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         />  <label>Insured Client Same as Applicant</label></div>):('')}
 
         <BusinessDetailsInsurance insurance={extractInsurance()} collectPayload = {collectUpdatePayload} writeAccess = {hasWriteAccess} />
-        <BusinessDetailsAdvisors advisors={business.advisors} collectPayload = {collectUpdatePayload} business={business} writeAccess = {hasWriteAccess}/>
+        <BusinessDetailsAdvisors advisors={business.advisors} collectPayload = {collectUpdatePayload} business={business} writeAccess = {hasWriteAccess} update ={updateCounter} />
         <div className='container'>
         <BusinessDetailsFP docName = 'First Page' business = {business} refreshBusinesses = {refreshBusinesses} forApproval = {forApproval} writeAccess = {hasWriteAccess}/>
         <BusinessDetailsFP docName = 'Commission Report' business = {business} refreshBusinesses = {refreshBusinesses} forApproval = {forApproval} writeAccess = {hasWriteAccess}/>
