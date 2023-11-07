@@ -40,6 +40,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     const [DeclineConfirmDisplayed, setDeclineConfirmDisplayed] = useState(false)
     const [ApprovalConfirmDisplayed, setApprovalConfirmDisplaed] = useState(false)
     const [isSubmitForReviewDisabled, setIsSubmitForReviewDisabled] = useState(false)
+    const [myBusiness, setMyBusiness] = useState(business)
     const { user } = useAuth()
 
     const getMyClient = async () => {
@@ -86,6 +87,18 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         }
     }
 
+    const refreshMyBusiness = async () =>{
+        console.log('inside refreshMyBusiness')
+        const url = ROOT_URL+'/api/mybusiness/'+business.id +'/'
+        let b = await fetchObject(url)
+        console.log('FETCHED FOR MYBUSINESS')
+        console.log(b)
+        await setMyBusiness(b)
+        console.log("myBusiness")
+        console.log(myBusiness)
+        setUpdateCounter(updateCounter + 1)
+    }
+
 
     useEffect(()=>{
         console.log('BusinessDetails useEffect()')
@@ -122,7 +135,8 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
             //|| (myStatus && myStatus.status_name === 'DECLINED') //or it is DECLINED and user should be resubmiting Policy Deliery Confirmation intead
             //|| (myStatus && myStatus.status_name === 'PENDING') 
         )
-    }, [business, updateCounter, updateErrors])
+
+    }, [business, updateCounter, updateErrors, myBusiness])
 
     const fetchObject = async (url) =>{
         let headers = new Headers()
@@ -338,6 +352,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         const updatedResult = await fetchResult.json()
         const errors = updatedResult['result']
         if(errors.length === 0){
+            refreshMyBusiness()
             setUpdateCounter(updateCounter + 1)
             console.log('no errors')
             setUpdateErrors(['Update successful'])
@@ -409,7 +424,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         />  <label>Insured Client Same as Applicant</label></div>):('')}
 
         <BusinessDetailsInsurance insurance={extractInsurance()} collectPayload = {collectUpdatePayload} writeAccess = {hasWriteAccess} />
-        <BusinessDetailsAdvisors advisors={business.advisors} collectPayload = {collectUpdatePayload} business={business} writeAccess = {hasWriteAccess} update ={updateCounter} />
+        <BusinessDetailsAdvisors advisors={business.advisors} collectPayload = {collectUpdatePayload} business={myBusiness} writeAccess = {hasWriteAccess} update ={updateCounter} />
         <div className='container'>
         <BusinessDetailsFP docName = 'First Page' business = {business} refreshBusinesses = {refreshBusinesses} forApproval = {forApproval} writeAccess = {hasWriteAccess}/>
         <BusinessDetailsFP docName = 'Commission Report' business = {business} refreshBusinesses = {refreshBusinesses} forApproval = {forApproval} writeAccess = {hasWriteAccess}/>

@@ -4,7 +4,7 @@ import {useAuth} from '../hooks/useAuth'
 import NBF8Advisor from './NBF8Advisor'
 import Button from './Button'
 import {ROOT_URL} from '../constants'
-const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess}) => {
+const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}) => {
     const {user} = useAuth()
 
     const [users, setUsers] = useState([]) // all the users of the system 
@@ -18,11 +18,11 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess}) => {
     const [addedExistingAdvisor, setAddedExistingAdvisor] = useState(false)
     useEffect(
         ()=>{
-            console.log('useEffect in BusinessDetailsAdvisors')
+            console.log('XXXXXXXXXXXXXXXXXXXXX  useEffect in BusinessDetailsAdvisors')
             console.log(business)
 
             if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
-                setAddedExistingAdvisor(true)
+                //setAddedExistingAdvisor(true)
                 let myKey = 10000
                 let myAdvisors = {}
                 business.related_users.forEach((user)=>{
@@ -84,7 +84,7 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess}) => {
             }
             console.log('ADVISORS.......')
             console.log(advisors)
-        },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions]
+        },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update]
     )    
 
     const addAdvisor = (advisor, myKey)=>{
