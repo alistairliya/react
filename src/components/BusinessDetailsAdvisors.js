@@ -22,7 +22,7 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
             console.log(business)
 
             if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
-                //setAddedExistingAdvisor(true)
+                setAddedExistingAdvisor(true)
                 let myKey = 10000
                 let myAdvisors = {}
                 business.related_users.forEach((user)=>{
