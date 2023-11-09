@@ -351,12 +351,16 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         const fetchResult = await fetch(url, options)
         const updatedResult = await fetchResult.json()
         const errors = updatedResult['result']
-        if(errors.length === 0){
+        if(errors.length === 0 && updatedResult['business']){
             refreshMyBusiness()
             setUpdateCounter(updateCounter + 1)
             console.log('no errors')
             setUpdateErrors(['Update successful'])
             alert('Update successful')
+            console.log("!!!!!!!!!!!! UPDATE RESULT !!!!!!!!!!!")
+            console.log(updatedResult)
+            setMyBusiness(updatedResult['business'])
+
         }
         setUpdateErrors(errors)
     }
