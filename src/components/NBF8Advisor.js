@@ -16,7 +16,7 @@ const NBF8Advisor = ({
     writeAccess
 }) => {
     const {user} = useAuth()
-    const [role, setRole] = useState({})
+    const [role, setRole] = useState()
     const [advisor, setAdvisor] = useState()
     const [collaboratorStatus, setCollaboratorStatus] = useState({})
     const [collaboratorPosition, setCollaboratorPosition] = useState({})
@@ -70,10 +70,15 @@ const NBF8Advisor = ({
         if(selectedAdvisors[id]){
             console.log('selectedAdvisors[id]')
             console.log(selectedAdvisors[id])
-            if(selectedAdvisors[id].role){
-                console.log('selectedAdvisors[id].role')
-                console.log(selectedAdvisors[id].role)
-                setRole(selectedAdvisors[id].role)
+            if(selectedAdvisors[id].user_role && !role ){
+                console.log(selectedAdvisors[id].user_role)
+                const getRole = async()=>{
+                    const theRole = await fetchResource(selectedAdvisors[id].user_role)
+                    await setRole(theRole)
+                    console.log("<<<<<<<<<<<<<<< ROLE <<<<<<<<<<<<<<<")
+                    console.log(role)
+                }
+                getRole()
             } 
             if(selectedAdvisors[id].user  && !advisor){ // <- Start from here, eg: "user": "http://localhost:8000/api/users/21/"
                 const getAdvisor = async ()=>{
@@ -111,6 +116,11 @@ const NBF8Advisor = ({
             <p>{
                 JSON.stringify(selectedAdvisors[id]) 
             }</p>
+            <p>
+                {
+                    JSON.stringify(role)
+                }
+            </p>
             <div className="form-control">
                 <label>Advisor:</label>
                 <Select
@@ -150,7 +160,7 @@ const NBF8Advisor = ({
                 <label>Role:</label>
                 <Select 
                     options={roleOptions}
-                    placeholder={selectedAdvisors[id] && selectedAdvisors[id].role? selectedAdvisors[id].role.user_role_name:'Role'}
+                    placeholder={role && role.user_role_name? role.user_role_name:'Role'}
                     onChange={(selectedOption)=>{
                         console.log('selectedOption')
                         console.log(selectedOption)
