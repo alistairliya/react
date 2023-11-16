@@ -97,10 +97,15 @@ const NBF8Advisor = ({
                 console.log(selectedAdvisors[id].collaboratorStatus)
                 setCollaboratorStatus(selectedAdvisors[id].collaboratorStatus)
             }
-            if(selectedAdvisors[id].collaboratorPosition){
-                console.log('selectedAdvisors[id].collaboratorPosition')
-                console.log(selectedAdvisors[id].collaboratorPosition)
-                setCollaboratorPosition(selectedAdvisors[id].collaboratorPosition)
+            if(selectedAdvisors[id].collaborator_position){
+                console.log('selectedAdvisors[id].collaborator_position')
+                console.log(selectedAdvisors[id].collaborator_position)
+                //setCollaboratorPosition(selectedAdvisors[id].collaboratorPosition)
+                const getPos = async () => {
+                    const thePos = await fetchResource(selectedAdvisors[id].collaborator_position)
+                    await setCollaboratorPosition(thePos)
+                }
+                getPos()
             }
         }
         ///console.log(selectedAdvisors)
@@ -118,7 +123,7 @@ const NBF8Advisor = ({
             }</p>
             <p>
                 {
-                    JSON.stringify(role)
+                    JSON.stringify(collaboratorPosition)
                 }
             </p>
             <div className="form-control">
@@ -177,7 +182,7 @@ const NBF8Advisor = ({
                 <Select
                     isDisabled={!writeAccess}
                     options={collaboratorPositionOptions}
-                    placeholder={selectedAdvisors[id] && selectedAdvisors[id].collaboratorPosition? selectedAdvisors[id].collaboratorPosition.position_name:'Position'} 
+                    placeholder={collaboratorPosition && collaboratorPosition.position_name? collaboratorPosition.position_name:'Position'} 
                     onChange={
                         (selectedOption)=>{
                             console.log('selectedOption')
