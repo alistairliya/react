@@ -18,8 +18,8 @@ const NBF8Advisor = ({
     const {user} = useAuth()
     const [role, setRole] = useState()
     const [advisor, setAdvisor] = useState()
-    const [collaboratorStatus, setCollaboratorStatus] = useState({})
-    const [collaboratorPosition, setCollaboratorPosition] = useState({})
+    const [collaboratorStatus, setCollaboratorStatus] = useState()
+    const [collaboratorPosition, setCollaboratorPosition] = useState()
     const [cfcCode, setCfcCode] = useState('')
     const [split, setSplit] = useState(0)
     
@@ -92,12 +92,17 @@ const NBF8Advisor = ({
                 //setAdvisor(selectedAdvisors[id].advisor)
                 getAdvisor()
             }
-            if(selectedAdvisors[id].collaboratorStatus){
-                console.log('selectedAdvisors[id].collaboratorStatus')
-                console.log(selectedAdvisors[id].collaboratorStatus)
-                setCollaboratorStatus(selectedAdvisors[id].collaboratorStatus)
+            if(selectedAdvisors[id].collaborator_status && !collaboratorStatus){
+                console.log('selectedAdvisors[id].collaborator_status')
+                console.log(selectedAdvisors[id].collaborator_status)
+                //setCollaboratorStatus(selectedAdvisors[id].collaboratorStatus)
+                const getStatus = async () =>{
+                    const theStatus = await fetchResource(selectedAdvisors[id].collaborator_status)
+                    await setCollaboratorStatus(theStatus)
+                }
+                getStatus()
             }
-            if(selectedAdvisors[id].collaborator_position){
+            if(selectedAdvisors[id].collaborator_position && !collaboratorPosition){
                 console.log('selectedAdvisors[id].collaborator_position')
                 console.log(selectedAdvisors[id].collaborator_position)
                 //setCollaboratorPosition(selectedAdvisors[id].collaboratorPosition)
@@ -123,7 +128,7 @@ const NBF8Advisor = ({
             }</p>
             <p>
                 {
-                    JSON.stringify(collaboratorPosition)
+                    JSON.stringify(collaboratorStatus)
                 }
             </p>
             <div className="form-control">
@@ -198,7 +203,7 @@ const NBF8Advisor = ({
                 <Select 
                     isDisabled={!writeAccess}
                     options = {collaboratorStatusOptions}
-                    placeholder={selectedAdvisors[id] && selectedAdvisors[id].collaboratorStatus? selectedAdvisors[id].collaboratorStatus.status_name:'Status'}
+                    placeholder={ collaboratorStatus && collaboratorStatus.status_name? collaboratorStatus.status_name:'Status'}
                     onChange={
                         (selectedOption)=>{
                             console.log('selectedOption')
