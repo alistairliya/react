@@ -108,9 +108,8 @@ const NBF8Advisor = ({
     return (
         <div>
             <p>{id}</p>
-            <p>{advisor? JSON.stringify(advisor):""}</p>
             <p>{
-                advisor? advisor.username:""
+                JSON.stringify(selectedAdvisors[id]) 
             }</p>
             <div className="form-control">
                 <label>Advisor:</label>
@@ -138,7 +137,7 @@ const NBF8Advisor = ({
                 <input
                     disabled={!writeAccess}
                     type="text"
-                    placeholder={selectedAdvisors[id] && selectedAdvisors[id].cfcCode? selectedAdvisors[id].cfcCode:'Enter CFC Code'}
+                    placeholder={selectedAdvisors[id] && selectedAdvisors[id].cfc_code? selectedAdvisors[id].cfc_code:'Enter CFC Code'}
                     onChange = {(e)=>{
                         console.log('e.target.value')
                         console.log(e.target.value)
