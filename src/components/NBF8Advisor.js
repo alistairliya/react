@@ -22,6 +22,7 @@ const NBF8Advisor = ({
     const [collaboratorPosition, setCollaboratorPosition] = useState()
     const [cfcCode, setCfcCode] = useState('')
     const [split, setSplit] = useState(0)
+    const [businessUserID, setBusinessUserID] = useState(-1) // ID from the businessuser object from API  
     
 
     const roleOptions = roles.map(
@@ -70,6 +71,10 @@ const NBF8Advisor = ({
         if(selectedAdvisors[id]){
             console.log('selectedAdvisors[id]')
             console.log(selectedAdvisors[id])
+            if(selectedAdvisors[id].id){
+                // this is the businessuser object's "id" so that we can later pass into backend for updating existing businessuser object.
+                setBusinessUserID(selectedAdvisors[id].id)
+            }
             if(selectedAdvisors[id].user_role && !role ){
                 console.log(selectedAdvisors[id].user_role)
                 const getRole = async()=>{
@@ -124,12 +129,8 @@ const NBF8Advisor = ({
         <div>
             <p>{id}</p>
             <p>{
-                JSON.stringify(selectedAdvisors[id]) 
             }</p>
             <p>
-                {
-                    JSON.stringify(collaboratorStatus)
-                }
             </p>
             <div className="form-control">
                 <label>Advisor:</label>
@@ -146,7 +147,7 @@ const NBF8Advisor = ({
                         console.log('selectedOption')
                         console.log(selectedOption)
                         setAdvisor(selectedOption.value)
-                        updateAdvisor(id, {advisor: selectedOption.value, role: role, cfcCode: cfcCode, collaboratorStatus: collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split})
+                        updateAdvisor(id, {id: businessUserID, advisor: selectedOption.value, role: role, cfcCode: cfcCode, collaboratorStatus: collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split})
                     }
                     
                 }
@@ -162,7 +163,7 @@ const NBF8Advisor = ({
                         console.log('e.target.value')
                         console.log(e.target.value)
                         setCfcCode(e.target.value)
-                        updateAdvisor(id, {advisor: advisor, role: role, cfcCode: e.target.value,collaboratorStatus:collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split })
+                        updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode: e.target.value,collaboratorStatus:collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split })
                     }}
                 />
             </div>
@@ -175,7 +176,7 @@ const NBF8Advisor = ({
                         console.log('selectedOption')
                         console.log(selectedOption)
                         setRole(selectedOption.value)
-                        updateAdvisor(id, {advisor: advisor,role: selectedOption.value, fcfCode: cfcCode, collaboratorStatus: collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split})
+                        updateAdvisor(id, {id: businessUserID, advisor: advisor,role: selectedOption.value, fcfCode: cfcCode, collaboratorStatus: collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split})
                         
                     }}
 
@@ -193,7 +194,7 @@ const NBF8Advisor = ({
                             console.log('selectedOption')
                             console.log(selectedOption)
                             setCollaboratorPosition(selectedOption.value)
-                            updateAdvisor(id, {advisor: advisor, role: role, cfcCode:cfcCode, colaboratorStatus:collaboratorStatus, collaboratorPosition: selectedOption.value, split:split})
+                            updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode:cfcCode, colaboratorStatus:collaboratorStatus, collaboratorPosition: selectedOption.value, split:split})
                         }
                     }
                 />
@@ -209,7 +210,7 @@ const NBF8Advisor = ({
                             console.log('selectedOption')
                             console.log(selectedOption)
                             setCollaboratorStatus(selectedOption.value)
-                            updateAdvisor(id, {advisor: advisor, role: role, cfcCode:cfcCode, collaboratorStatus: selectedOption.value, collaboratorPosition: collaboratorPosition, split:split})
+                            updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode:cfcCode, collaboratorStatus: selectedOption.value, collaboratorPosition: collaboratorPosition, split:split})
                         }
                     }
                 />
@@ -224,7 +225,7 @@ const NBF8Advisor = ({
                         console.log('e.target.value')
                         console.log(e.target.value)
                         setSplit(e.target.value)
-                        updateAdvisor(id, {advisor: advisor, role: role, cfcCode: cfcCode,collaboratorStatus:collaboratorStatus, collaboratorPosition: collaboratorPosition, split: e.target.value })
+                        updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode: cfcCode,collaboratorStatus:collaboratorStatus, collaboratorPosition: collaboratorPosition, split: e.target.value })
                     }}
                 />
             </div>
