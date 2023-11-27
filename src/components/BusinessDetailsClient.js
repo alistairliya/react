@@ -25,7 +25,7 @@ const BusinessDetailsClient = ({title, client, collectPayload, writeAccess}) => 
 
     useEffect(()=>{
         //console.log('#######################################')
-        console.log('### BusinessDetailsClient useEffect ###')
+        console.log('222222222222222222222222 BusinessDetailsClient useEffect ###')
         console.log(client)
         setMyClient(client)
         if(client && !editMode){

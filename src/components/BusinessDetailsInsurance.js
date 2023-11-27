@@ -24,7 +24,7 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
     const [updatePayload, setUpdatePayload] = useState({})
 
     useEffect(()=>{
-        console.log('*****BusinessDetailsInsurance useEffect()')
+        console.log('22222222222222222222222222222222222 BusinessDetailsInsurance useEffect()')
         if(!editMode){
         console.log(insurance)
         const getPlan = async () => {

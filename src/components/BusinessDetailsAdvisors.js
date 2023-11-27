@@ -18,10 +18,11 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
     const [addedExistingAdvisor, setAddedExistingAdvisor] = useState(false)
     useEffect(
         ()=>{
-            console.log('XXXXXXXXXXXXXXXXXXXXX  useEffect in BusinessDetailsAdvisors')
+            console.log('>>>>>>>>>>>>>>>> 2222222222222222222222222222222222  useEffect in BusinessDetailsAdvisors')
             console.log(business)
 
             if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
+                console.log("2222222222222 LOADING ADVISORS??????")
                 setAddedExistingAdvisor(true)
                 let myKey = 10000
                 let myAdvisors = {}
@@ -35,6 +36,8 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                 setAdvisors(myAdvisors)
                 console.log('AFTER ADDING COLLABORATORS !!!!!!!!!!!!!!')
                 console.log(advisors)
+            }else{
+                console.log("2222222222222 NOT LOADING ADVISORS??????")
             }
             
             const fetchResource = async(resource)=>{
@@ -82,7 +85,7 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                 setBackgroundColor('lightblue')
                 collectPayload('collaborators', advisors)
             }
-            console.log('ADVISORS.......')
+            console.log('222222222222222222222222222 ADVISORS.......')
             console.log(advisors)
         },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update]
     )    
@@ -130,6 +133,11 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
     return (
         <div className="container">
             <h2>New Business Form: Advisor Information</h2>
+            <p>
+                {
+                    (new Date).getSeconds()
+                }
+            </p>
             {Object.keys(advisors).map((key, index)=>{
                 //return <NBF8Advisor key={index} />
                 return (

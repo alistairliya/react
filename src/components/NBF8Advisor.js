@@ -22,7 +22,8 @@ const NBF8Advisor = ({
     const [collaboratorPosition, setCollaboratorPosition] = useState()
     const [cfcCode, setCfcCode] = useState('')
     const [split, setSplit] = useState(0)
-    const [businessUserID, setBusinessUserID] = useState(-1) // ID from the businessuser object from API  
+    const [businessUserID, setBusinessUserID] = useState(-1) // ID from the businessuser object from API 
+    //const [testString, setTestString]=useState("") 
     
 
     const roleOptions = roles.map(
@@ -65,9 +66,11 @@ const NBF8Advisor = ({
     }
 
     useEffect(()=>{
-        console.log('>>>>>>>>>>>>>>>>>>>> useEffect for NBF8Advisor ID: '+id)
+        console.log('3333333333333333333333333333333333 useEffect for NBF8Advisor ID: '+id)
         console.log('selectedAdvisors:')
         console.log(selectedAdvisors)
+        let d = new Date()
+        // setTestString(testString + "..." + d.getMinutes() +":"+  d.getSeconds())
         if(selectedAdvisors[id]){
             console.log('selectedAdvisors[id]')
             console.log(selectedAdvisors[id])
@@ -129,6 +132,10 @@ const NBF8Advisor = ({
         <div>
             <p>{id}</p>
             <p>{
+            //testString
+            
+            (new Date).getMinutes()+":"+(new Date).getSeconds()
+
             }</p>
             <p>
             </p>

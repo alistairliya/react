@@ -42,7 +42,7 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
         }
 
     useEffect(()=>{
-        console.log('BusinessDetailsFP useEffect()')
+        console.log('22222222222222222222 BusinessDetailsFP useEffect()')
         console.log('refreshBusinesses')
         console.log(docName)
         console.log(business)

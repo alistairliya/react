@@ -87,6 +87,7 @@ function MyBusinesses() {
   // from Delete Task in example, 52:31, deleteTask
   const editBusiness = (business) =>{
     console.log('edit '+business.id)
+    console.log(business)
     setDetailedBusiness(business)
     //setBusinesses(businesses.filter((business)=>business.id!=id)) // example from deleting task 55:30
   }

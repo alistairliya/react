@@ -101,12 +101,10 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
 
 
     useEffect(()=>{
-        console.log('BusinessDetails useEffect()')
+        console.log("111111111111111111111111111111111111111 Business Details")
         console.log(business)
-        console.log('refreshBusinesses')
         console.log(refreshBusinesses)
         // is user staff?
-        console.log("########### Business Details")
         console.log(user)
         setHasWriteAccess(false)
         
@@ -428,7 +426,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         />  <label>Insured Client Same as Applicant</label></div>):('')}
 
         <BusinessDetailsInsurance insurance={extractInsurance()} collectPayload = {collectUpdatePayload} writeAccess = {hasWriteAccess} />
-        <BusinessDetailsAdvisors advisors={business.advisors} collectPayload = {collectUpdatePayload} business={myBusiness} writeAccess = {hasWriteAccess} update ={updateCounter} />
+        <BusinessDetailsAdvisors collectPayload = {collectUpdatePayload} business={myBusiness} writeAccess = {hasWriteAccess} update ={updateCounter} />
         <div className='container'>
         <BusinessDetailsFP docName = 'First Page' business = {business} refreshBusinesses = {refreshBusinesses} forApproval = {forApproval} writeAccess = {hasWriteAccess}/>
         <BusinessDetailsFP docName = 'Commission Report' business = {business} refreshBusinesses = {refreshBusinesses} forApproval = {forApproval} writeAccess = {hasWriteAccess}/>

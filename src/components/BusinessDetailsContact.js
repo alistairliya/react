@@ -20,7 +20,7 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
     const [updatePayload, setUpdatePayload] = useState({})
 
     useEffect(()=>{
-        console.log('BusinessDetailsContact useEffect()')
+        console.log('22222222222222222222 BusinessDetailsContact useEffect()')
         console.log(address)
         console.log(phone)
 
