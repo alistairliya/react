@@ -13,7 +13,8 @@ const NBF8Advisor = ({
     selectedAdvisors, // selectedAdvisors[id] <= if this component should be loaded with a collaborator in the businessuser object (Business_User model)
     collaboratorStatuses, 
     collaboratorPositions, 
-    writeAccess
+    writeAccess,
+    force
 }) => {
     const {user} = useAuth()
     const [role, setRole] = useState()
@@ -66,6 +67,7 @@ const NBF8Advisor = ({
     }
 
     useEffect(()=>{
+        force()
         console.log('3333333333333333333333333333333333 useEffect for NBF8Advisor ID: '+id)
         console.log('selectedAdvisors:')
         console.log(selectedAdvisors)

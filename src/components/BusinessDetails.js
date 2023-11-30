@@ -103,6 +103,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     useEffect(()=>{
         console.log("111111111111111111111111111111111111111 Business Details")
         console.log(business)
+        setMyBusiness(business)
         console.log(refreshBusinesses)
         // is user staff?
         console.log(user)
@@ -367,6 +368,11 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
 
     return (
         <div className="container">
+        <div>
+            <p>
+                {JSON.stringify(myBusiness)}
+            </p>
+        </div>
         <div>Transaction ID: {business.id}</div>
         <div>Status: {myStatus?myStatus.status_name:""}</div>
         <div>
