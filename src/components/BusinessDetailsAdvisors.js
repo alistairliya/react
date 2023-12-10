@@ -16,14 +16,14 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
     const [editMode, setEditMode] = useState(false)
     const [backgroundColor, setBackgroundColor] = useState('white');
     const [addedExistingAdvisor, setAddedExistingAdvisor] = useState(false)
-    const [myBusiness, setMyBusiness] = useState() // we are not using this var for anything other than forcing an update of this component by its child. //https://github.com/alistairliya/react/issues/3
+    //const [myBusiness, setMyBusiness] = useState() // we are not using this var for anything other than forcing an update of this component by its child. //https://github.com/alistairliya/react/issues/3
     useEffect(
         ()=>{
             console.log('>>>>>>>>>>>>>>>> 2222222222222222222222222222222222  useEffect in BusinessDetailsAdvisors')
-            setMyBusiness(business)
+            //setMyBusiness(business)
             console.log(business)
 
-            //if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
+            if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
                 console.log("2222222222222 LOADING ADVISORS??????")
                 setAddedExistingAdvisor(true)
                 let myKey = 10000
@@ -38,9 +38,9 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                 setAdvisors(myAdvisors)
                 console.log('AFTER ADDING COLLABORATORS !!!!!!!!!!!!!!')
                 console.log(advisors)
-            //}else{
-            //    console.log("2222222222222 NOT LOADING ADVISORS??????")
-            //}
+            }else{
+                console.log("2222222222222 NOT LOADING ADVISORS??????")
+            }
             
             const fetchResource = async(resource)=>{
                 let headers = new Headers()
@@ -89,7 +89,8 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
             }
             console.log('222222222222222222222222222 ADVISORS.......')
             console.log(advisors)
-        },[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
+        },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update]
+        //},[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
     )    
 
     const addAdvisor = (advisor, myKey)=>{
@@ -131,9 +132,9 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
         console.log(advisors)
     }
 
-    const forceUpdate = () =>{
-        setMyBusiness(business)
-    }
+    //const forceUpdate = () =>{
+    //    setMyBusiness(business)
+    //}
 
 
     return (
@@ -165,7 +166,7 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                             selectedAdvisors = {advisors} 
                             collaboratorStatuses = {collaboratorStatuses} 
                             collaboratorPositions ={collaboratorPositions}
-                            force = {forceUpdate}
+                            //force = {forceUpdate}
                             writeAccess = {writeAccess} /> 
                         <Button 
                             text='Remove' 
