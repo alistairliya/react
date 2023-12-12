@@ -89,8 +89,8 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
             }
             console.log('222222222222222222222222222 ADVISORS.......')
             console.log(advisors)
-        //},[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update]
-        },[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
+        },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update]
+        //},[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
     )    
 
     const addAdvisor = (advisor, myKey)=>{
