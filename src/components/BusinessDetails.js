@@ -103,7 +103,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     useEffect(()=>{
         console.log("111111111111111111111111111111111111111 Business Details")
         console.log(business)
-        //setMyBusiness(business)
+        setMyBusiness(business)
         console.log(refreshBusinesses)
         // is user staff?
         console.log(user)
