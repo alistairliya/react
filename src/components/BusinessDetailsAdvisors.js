@@ -132,9 +132,9 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
         console.log(advisors)
     }
 
-    //const forceUpdate = () =>{
-    //    setMyBusiness(business)
-    //}
+    const forceUpdate = () =>{
+        setMyBusiness(business)
+    }
 
 
     return (
@@ -166,7 +166,7 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                             selectedAdvisors = {advisors} 
                             collaboratorStatuses = {collaboratorStatuses} 
                             collaboratorPositions ={collaboratorPositions}
-                            //force = {forceUpdate}
+                            force = {forceUpdate}
                             writeAccess = {writeAccess} /> 
                         <Button 
                             text='Remove' 
