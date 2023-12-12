@@ -368,11 +368,11 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
 
     return (
         <div className="container">
-        
-        
-        
-        
-        
+        <div>
+            <p>
+                {JSON.stringify(myBusiness)}
+            </p>
+        </div>
         <div>Transaction ID: {business.id}</div>
         <div>Status: {myStatus?myStatus.status_name:""}</div>
         <div>
