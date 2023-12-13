@@ -23,7 +23,7 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
             setMyBusiness(business)
             console.log(business)
 
-            //if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
+            if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
                 console.log("2222222222222 LOADING ADVISORS??????")
                 setAddedExistingAdvisor(true)
                 let myKey = 10000
@@ -38,9 +38,9 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                 setAdvisors(myAdvisors)
                 console.log('AFTER ADDING COLLABORATORS !!!!!!!!!!!!!!')
                 console.log(advisors)
-            //}else{
-            //    console.log("2222222222222 NOT LOADING ADVISORS??????")
-            //}
+            }else{
+                console.log("2222222222222 NOT LOADING ADVISORS??????")
+            }
             
             const fetchResource = async(resource)=>{
                 let headers = new Headers()
@@ -89,7 +89,8 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
             }
             console.log('222222222222222222222222222 ADVISORS.......')
             console.log(advisors)
-        },[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
+        //},[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
+        },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update]
     )    
 
     const addAdvisor = (advisor, myKey)=>{
