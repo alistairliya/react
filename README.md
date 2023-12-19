@@ -1,5 +1,11 @@
 # V1 Tasks Remaining (Dec. 2023)
 - Table displays all required information
+  - Application Date
+  - Settled Date
+  - Policy Number
+  - Provider
+  - Projected FYC
+  - Settled FYC   
 - Pagination of table
 - Remote File Upload
 - Organize notifications
