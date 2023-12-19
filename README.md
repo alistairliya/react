@@ -1,3 +1,14 @@
+# V1 Tasks Remaining (Dec. 2023)
+- Table displays all required information
+- Pagination of table
+- Remote File Upload
+- Organize notifications
+- Bug Fixess
+  - [When switching business, the collaborator on the detail pane does not switch and continued to be linked to the previous business.](https://github.com/alistairliya/react/issues/3)
+  - [Cannot add collaborator](https://github.com/alistairliya/react/issues/4)
+  - [Field Disappears](https://github.com/alistairliya/react/issues/1)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
