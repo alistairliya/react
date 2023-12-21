@@ -50,7 +50,7 @@ function MyBusinesses() {
     const getBusinesses = async () => {
       const businessesFromServer = await fetchBusiness();
       //setBusinesses(businessesFromServer.reverse())
-      setBusinesses(businessesFromServer);
+      setBusinesses(businessesFromServer['results']);
     };
     getBusinesses();
     console.log("user:");
