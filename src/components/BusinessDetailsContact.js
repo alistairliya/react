@@ -45,7 +45,8 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
         const getAvailableCountries = async () => {
             console.log('inside getAvailableCountries')
             const url = ROOT_URL+'/api/country/'
-            let countries = await fetchObject(url)
+            let countriesResults = await fetchObject(url)
+            let countries = countriesResults['results']
             //console.log("got countries!")
             //console.log(countries)
             return countries
@@ -54,7 +55,8 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
         const getAvailableProvinces = async () => {
             console.log('inside getAvailableProvinces')
             const url = ROOT_URL+'/api/province_state/'
-            let provinces = await fetchObject(url)
+            let provincesResults = await fetchObject(url)
+            const provinces = provincesResults['results']
             return provinces
         }
 

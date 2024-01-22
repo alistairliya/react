@@ -46,21 +46,24 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
         const getAvailablePlans = async () => {
             const base = ROOT_URL+"/api/" 
             let url = base + "insuranceplan/"
-            const plans = await fetchObject(url)
+            const plansResults = await fetchObject(url)
+            const plans = plansResults['results']
             return plans    
         }
 
         const getAvailablePlanTypes = async () => {
             const base = ROOT_URL+"/api/"
             let url = base + "insuranceplantype/"
-            const planTypes = await fetchObject(url)
+            const planTypesResults = await fetchObject(url)
+            const planTypes = planTypesResults['results']
             return planTypes
         }
 
         const getAvailableProviders = async () => {
             const base = ROOT_URL+"/api/"
             let url = base + "insuranceprovider/"
-            const providers = await fetchObject(url)
+            const providersResults = await fetchObject(url)
+            const providers = providersResults['results']
             return providers
         }
 

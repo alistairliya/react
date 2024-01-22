@@ -38,7 +38,10 @@ const NBF8 = ({onNextClicked, setCollaborators}) => {
                     setUsers(theUsers)
                 }
                 const getRoles = async ()=>{
-                    const theRoles = await fetchResource('businessuserrole')
+                    const theRolesResults = await fetchResource('businessuserrole')
+                    const theRoles = theRolesResults['results']
+                    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> R O L E S <<<<<<<<<<<<<<<<<<<<<<<<<<')
+                    console.log(theRoles)
                     setRoles(theRoles)
                 }
                 const getCollaboratorStatuses = async ()=>{
