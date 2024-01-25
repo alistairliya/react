@@ -44,69 +44,43 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     const { user } = useAuth()
 
     const getMyClient = async () => {
-        console.log('inside getMyClient')
         let c = await fetchObject(business.client)
-        //console.log("got client!")
-        //console.log('setting MyClinet')
         setMyClient(c)
-        //console.log('after set MyClinet')
     }
    
     const getInsuredClient = async () => {
-        console.log('inside getInsuredClient')
         let c = await fetchObject(business.insurance_application[0].insured_client)
-        //console.log("got client!")
-        //console.log('setting MyClinet')
         setMyInsuredClient(c)
-        //console.log('after set MyClinet')
     }
-    //console.log('>>> BusinessDetails useEffect')
-    //console.log(business.client)
-    //console.log("^^^ Before calling getMyClient")
     const getStatus = async () => {
-        console.log('inside getStatus')
-        console.log(business.status)
         let s = await fetchObject(business.status)
         if(s.status_name === 'REVIEW' || s.status_name === 'PENDING'){
             setApprovalButtonsDisabled(false)
         }
-        console.log(s)
         await setMyStatus(s)
     }
 
     const getWriteAcess = async () =>{
-        console.log('inside getWriteAcess')
         const url = ROOT_URL+'/api/editbusiness/get_write_access/?business_id='+business.id
         let result = await fetchObject(url)
         if(result['result'] === 'OK'){
-            console.log('AAAAAAAAAAAAAAAAA has write access')
             setHasWriteAccess(true)
         }else{
-            console.log('AAAAAAAAAAAAAAAAAAA does not have write access')
             setHasWriteAccess(false)
         }
     }
 
     const refreshMyBusiness = async () =>{
-        console.log('inside refreshMyBusiness')
         const url = ROOT_URL+'/api/mybusiness/'+business.id +'/'
         let b = await fetchObject(url)
-        console.log('FETCHED FOR MYBUSINESS')
-        console.log(b)
         await setMyBusiness(b)
-        console.log("myBusiness")
-        console.log(myBusiness)
         setUpdateCounter(updateCounter + 1)
     }
 
 
     useEffect(()=>{
-        console.log("111111111111111111111111111111111111111 Business Details")
-        console.log(business)
         setMyBusiness(business)
-        console.log(refreshBusinesses)
         // is user staff?
-        console.log(user)
         setHasWriteAccess(false)
         
         // is user owner?
@@ -150,7 +124,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     const test = async() =>{
         //console.log("My Clinet: "+JSON.stringify(myClient))
         //refreshBusinesses()
-        console.log(updatePayload)
     }
 
     const extractApplicantAddress = () => {
@@ -179,15 +152,12 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     }
 
     const extractInsurance = () =>{
-        console.log("extractInsurance")
 
         const insurance =  business.insurance_application? business.insurance_application.length > 0? business.insurance_application[0]: null : null // from an array
-        //console.log(insurance)
         return insurance
     }
 
     const rejectDeclineClicked = () =>{
-        console.log('declineClicked')
         setApprovalButtonsDisabled(true)
         setDeclineConfirmDisplayed(true)
     }
@@ -195,26 +165,19 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     // Passed to BusinessDetailsDecline
     // Called when user clicks on the confirm button in BusinessDetailsDecline
     const rejectDeclineConfirmed = async (reason) =>{
-        console.log('declineConfirmed')
-        console.log(reason)
         // Fix the hadcode late
         // REJECTED
         let declinedStatusUrl = ROOT_URL+'/api/businessstatus/4/' // !!!HARDCODE FOR NOW. NEED FIX LATER!!! 
-        console.log('myStatus: '+myStatus.status_name) 
         if(myStatus.status_name === 'PENDING'){
             // DECLINED
             declinedStatusUrl = ROOT_URL+'/api/businessstatus/9/' // !!!HARDCODE FOR NOW. NEED FIX LATER!!! 
         }
-        console.log("Seding declining status URL to backend: "+declinedStatusUrl)
         const result = await reviewHelper(declinedStatusUrl, reason)
-        console.log('after approvalHelper in declineConfirmed in BusinessDetails.js')
-        console.log(result)
     }
 
 
     // Important: This sets status into ACCEPTED/APPROVED
     const acceptApproveClicked = () =>{
-        console.log('approveClicked')
         setApprovalConfirmDisplaed(true)
         setApprovalButtonsDisabled(true)
        
@@ -236,7 +199,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
 
 
     const reviewHelper = async (approvalStatusUrl, reason='', settledFYC='') =>{
-        console.log('APPROVALHELPER')
         // call the API to approve the business
         // curl -X PATCH -H 'Authorization: Token 9af7ed53fa7a0356998896d8224e67e65c8650a3' -H 'Content-Type: application/json'  -d  '{"status":ROOT_URL+"/api/businessstatus/3/"}' http://127.0.0.1:8000/api/businessapproval/1/
         // Need ID of business and ID of status
@@ -265,9 +227,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
             business.status = updatedResult.status
             await getStatus()
             await refreshBusinesses()
-            console.log('after refreshBusinesses in approveClicked in BusinessDetails.js')
             if(updatedResult && updatedResult.status === approvalStatusUrl){
-                console.log('setting approvalButtonsDisabled to true')
                 setApprovalButtonsDisabled(true)
                 setDeclineConfirmDisplayed(false)
             }
@@ -275,9 +235,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         }
         // result coming back is a business object
         const result = await sendReview(reason)
-        console.log("sendApproval result : ")
-        console.log(result)
-        console.log('Approval Helper Complete')
         return result
 
 
@@ -286,10 +243,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     // this function is called by child component in edit mode.
     const collectUpdatePayload = (key, value) =>{
         setEditMode(true) // something is being edited
-        console.log('collectUpdatePayload')
-        
-        console.log(key)
-        console.log(value)
         setUpdatePayload({...updatePayload, [key]:value})
     }
 
@@ -298,7 +251,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
             alert('Only the owner or supervisor can SUBMIT')
             return
         }
-        console.log('submitForReview')
         // EditBusinessViewSet.update_status
         const url = ROOT_URL+'/api/editbusiness/update_status/' 
         const token = user['token']
@@ -321,7 +273,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
  
         const errors = updatedResult['errors']
         if(errors.length === 0){
-            console.log('no errors')
             setUpdateErrors(['Update successful'])
             alert('Update successful')
         }
@@ -334,8 +285,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
             alert('Only the onwer or supervisor can EDIT')
             return
         }
-        console.log('sendUpdate')
-        console.log(updatePayload)
         const url = ROOT_URL+'/api/editbusiness/edit_business/'
         const token = user['token']
         const auth_str = 'Token '+token
@@ -356,8 +305,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
             console.log('no errors')
             setUpdateErrors(['Update successful'])
             alert('Update successful')
-            console.log("!!!!!!!!!!!! UPDATE RESULT !!!!!!!!!!!")
-            console.log(updatedResult)
             setMyBusiness(updatedResult['business'])
 
         }
