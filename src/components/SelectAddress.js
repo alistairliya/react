@@ -18,19 +18,17 @@ const SelectAddress = ({addresses, setAddress, onNextClicked, onPrevClicked}) =>
     )
     
     useEffect(()=>{
-        //console.log('Client Addresses')
-        //console.log(clientAddresses)
+        
+        
     },[])
 
     const handleSelection = (selected)=>{
-        console.log('handleSelection')
         setSelectedAddress(selected.value)
     }
 
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log('Next pressed')
         setAddress(selectedAddress)
         onNextClicked()
     }

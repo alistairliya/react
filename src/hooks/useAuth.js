@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
 
   // call this function when you want to authenticate the user
   const login = async (data) => {
-    console.log(data)
     // With User ID andd PW, get the token
     let formData = new FormData();
     formData.append('username', data['email']);
@@ -18,21 +17,16 @@ export const AuthProvider = ({ children }) => {
     const res = await fetch(ROOT_URL+'/api-token-auth/',{
         method:'POST',
         body:formData
-    })
-    console.log(res.status) 
+    }) 
     const result = await res.json()
-    const token = result['token']
-    console.log("token: " + token)
-    console.log("post result: "+ JSON.stringify(result) ) // If success, store the token and navigate to sashboard.
+    const token = result['token'] // If success, store the token and navigate to sashboard.
     // Otherwise display login error.
     if(res.status === 200){
         setUser(result);
-        console.log('SUCCESS LOGGED IN');
         //navigate("/dashboard");
         // Don't need above. ProtectedLayout and HomeLayout will
         //  eventually route based on if user is set.
 }   else{
-        console.log('FAILED LOGGED IN')
     }
   };
 
@@ -54,6 +48,6 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-    //console.log("useAuth...")
+    
     return useContext(AuthContext);
 };

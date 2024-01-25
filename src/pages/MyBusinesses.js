@@ -53,40 +53,31 @@ function MyBusinesses() {
       setBusinesses(businessesFromServer['results']);
     };
     getBusinesses();
-    console.log("user:");
-    console.log(user);
   }, [showAddBusiness, refreshTrigger]);
 
   const fetchBusiness = async () => {
     let headers = new Headers();
     const token = user["token"];
-    console.log("About to fetch with token " + token);
     //const auth_str = 'Basic '+btoa('test:test123!')
 
     const auth_str = "Token " + token;
-    console.log(auth_str);
     headers.set("Authorization", auth_str);
     const res = await fetch(ROOT_URL + "/api/mybusiness/", {
       headers: headers,
     });
     const data = await res.json();
-    console.log(data);
     return data;
   };
 
   // from Add Task example, 1:09:33
   const addBusiness = (business) => {
     const id = Math.floor(Math.random() * 10000) + 1;
-    console.log(id);
-    console.log(business);
     const newBusiness = { id, ...business };
     setBusinesses([...businesses, newBusiness]);
   };
 
   // from Delete Task in example, 52:31, deleteTask
   const editBusiness = (business) => {
-    console.log("edit " + business.id);
-    console.log(business);
     setDetailedBusiness(business);
     //setBusinesses(businesses.filter((business)=>business.id!=id)) // example from deleting task 55:30
   };
@@ -97,7 +88,6 @@ function MyBusinesses() {
 
   // Using toggleReminder in example 57:53
   const toggleReminder = (id) => {
-    console.log("toggle", id);
     setBusinesses(
       businesses.map((business) =>
         business.id === id
@@ -113,7 +103,6 @@ function MyBusinesses() {
 
   // Triggers a refresh of this component.
   const refreshBusinesses = () => {
-    console.log("refreshing...");
     setRefreshTrigger(refreshTrigger + 1);
   };
 
