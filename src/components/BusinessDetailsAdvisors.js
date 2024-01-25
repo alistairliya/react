@@ -19,34 +19,25 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
     const [myBusiness, setMyBusiness] = useState() // we are not using this var for anything other than forcing an update of this component by its child. //https://github.com/alistairliya/react/issues/3
     useEffect(
         ()=>{
-            console.log('>>>>>>>>>>>>>>>> 2222222222222222222222222222222222  useEffect in BusinessDetailsAdvisors')
             setMyBusiness(business)
-            console.log(business)
 
             if(!addedExistingAdvisor && business.related_users && business.related_users.length > 0){
-                console.log("2222222222222 LOADING ADVISORS??????")
                 setAddedExistingAdvisor(true)
                 let myKey = 10000
                 let myAdvisors = {}
                 business.related_users.forEach((user)=>{
                     myKey += 1
-                    console.log('#$#$#$#$#$#$#$#$#$#b adding collaborator')
-                    console.log(user)
                     //addAdvisor(user, myKey)
                     myAdvisors[myKey] = user
                 })
                 setAdvisors(myAdvisors)
-                console.log('AFTER ADDING COLLABORATORS !!!!!!!!!!!!!!')
-                console.log(advisors)
             }else{
-                console.log("2222222222222 NOT LOADING ADVISORS??????")
             }
             
             const fetchResource = async(resource)=>{
                 let headers = new Headers()
                 const token = user['token']
                 const auth_str = 'Token '+token
-                console.log(auth_str)
                 headers.set('Authorization', auth_str)
                 const res = await fetch(ROOT_URL+'/api/'+resource+'/', {headers:headers})
                 const data = await res.json()
@@ -74,36 +65,20 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
                 getCollaboratorStatuses()
                 getCollaboratorPosition()
             }
-            //console.log('users:')
-            //console.log(users)
-            console.log('advisors:')
-            console.log(advisors)
-            //console.log('collaboratorStatuses')
-            //console.log(collaboratorStatuses)
-            //console.log('collaboratorPositions')
-            //console.log(collaboratorPositions)
             if(editMode){
-                console.log('EDIT MODE')
                 setBackgroundColor('lightblue')
                 collectPayload('collaborators', advisors)
             }
-            console.log('222222222222222222222222222 ADVISORS.......')
-            console.log(advisors)
         //},[editMode, users, roles, /*advisors,*/ collaboratorStatuses, collaboratorPositions, update, myBusiness]
         },[editMode, users, roles, advisors, collaboratorStatuses, collaboratorPositions, update, myBusiness]
     )    
 
     const addAdvisor = (advisor, myKey)=>{
-        console.log('++++++++++++++..... addAdvisor...')
-        console.log(advisor)
         if(!advisor)
             advisor = {}
         if(!myKey)
             myKey = key
-        console.log('myKey: '+myKey.toString())
-        console.log(advisor)
         setAdvisors({...advisors, [myKey]:advisor })
-        console.log('after setAdvisors')
         //setKey((prev) => prev + 1)
         setKey(myKey + 1)
     }
@@ -111,7 +86,6 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
     // returns a function that removes the advisor
     // Used by JSX below to create a function for each remove button
     const removevAdvisor = (key)=>{
-        console.log('removevAdvisor building function for key: '+key.toString())
         return ()=>{
             const newAdvisors = {...advisors}
             delete newAdvisors[key]
@@ -121,15 +95,10 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
     }
 
     const updateAdvisor = (key, value)=>{
-        console.log('updateAdvisor')
-        console.log(key)
-        console.log(value)
         const newAdvisors = {...advisors}
         newAdvisors[key] = value
         setAdvisors(newAdvisors)
         setEditMode(true)
-        console.log(newAdvisors)
-        console.log(advisors)
     }
 
     const forceUpdate = () =>{
