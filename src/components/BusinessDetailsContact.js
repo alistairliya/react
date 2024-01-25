@@ -23,9 +23,10 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
 
         const getAddress = async () => {
             let a = await fetchObject(address)
-            a.province_state = await fetchObject(a.province_state)
-            a.country = await fetchObject(a.country)
-            
+            if(a){
+              a.province_state = await fetchObject(a.province_state)
+              a.country = await fetchObject(a.country)
+            }
             return a
         }
         const getPhone = async () => {
@@ -55,8 +56,9 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
             
         })
         getPhone().then((p)=>{
-            setMyPhone(p)
-            
+            if(p){
+              setMyPhone(p)
+            }
         })
         getAvailableCountries().then((c)=>{
             setCountries(c)
@@ -74,6 +76,9 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
     }, [address, phone, editMode, updatePayload])
 
     const fetchObject = async (url) =>{
+        if(!url){
+          return
+        }
         let headers = new Headers()
         const token = user['token']
         const auth_str = 'Token '+token

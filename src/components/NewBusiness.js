@@ -88,7 +88,7 @@ const NewBusiness = ({onAdd, close}) => {
         
         //if(applicantPhones!=null)
         
-        if(applicantInsurance!=null)
+        //if(applicantInsurance!=null)
 
     })
 

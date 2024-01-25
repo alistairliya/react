@@ -60,9 +60,10 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
         }
 
 
-        getPlan().then((p)=>{
-            }
-        )
+        //getPlan().then((p)=>{
+        //    }
+        //)
+        getPlan()
 
         getAvailablePlans().then((p)=>{
                 setPlans(p)
@@ -82,6 +83,9 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
     }, [insurance, editMode, updatePayload])
 
     const fetchObject = async (url) =>{
+        if(!url){
+            return
+        }
         let headers = new Headers()
         const token = user['token']
         const auth_str = 'Token '+token

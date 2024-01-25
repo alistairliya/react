@@ -15,7 +15,6 @@ const BusinessDetailsApprove = ({setPopup, setButtonsDisabled, confirmed, displa
 
 
     const handleApprove = () => {
-        console.log('handleDecline')
         // submit to API
         setPopup(false)
         confirmed(reason, strSettledFYC)
@@ -23,8 +22,6 @@ const BusinessDetailsApprove = ({setPopup, setButtonsDisabled, confirmed, displa
     }
 
     const handleNotesChange = (e) => {
-        console.log('handleNotesChange')
-        console.log(e.target.value)
         //const { name, value } = e.target
         setReason(e.target.value)
     }
@@ -36,15 +33,12 @@ const BusinessDetailsApprove = ({setPopup, setButtonsDisabled, confirmed, displa
         }
         let trailer = ''
         if(value.charAt(value.length-1) === '.'){
-            console.log('setting trailer to period')
             trailer = '.'
         }
         value = parseFloat(value)
         if(isNaN(value)){
-            console.log('NAN: '+value)
             setStrSettledFYC('')
         }else{
-            console.log('Number ' + value)
             if(value.toString().indexOf('.')>=0)
                 setStrSettledFYC(value)
             else
