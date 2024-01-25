@@ -24,9 +24,7 @@ const BusinessDetailsClient = ({title, client, collectPayload, writeAccess}) => 
     const [updatePayload, setUpdatePayload] = useState({})
 
     useEffect(()=>{
-        //console.log('#######################################')
-        console.log('222222222222222222222222 BusinessDetailsClient useEffect ###')
-        console.log(client)
+        
         setMyClient(client)
         if(client && !editMode){
           setMyLastName(client.last_name)
@@ -38,24 +36,19 @@ const BusinessDetailsClient = ({title, client, collectPayload, writeAccess}) => 
           setMySIN(client.sin)
         }
         if(editMode){
-          console.log('EDIT MODE')
           setBackgroundColor('lightblue')
           collectPayload('client', {...updatePayload, id:client.id})
         }
-        //console.log("^^^ BusinessDetailsClient useEffect")
-        //console.log('#######################################')
+        
+        
     },[myLastName, myClient, client, editMode, updatePayload])
 
 
     const handleChange = (event) => {
       setEditMode(true)
       const { name, value } = event.target
-      console.log('handleChange')
-      console.log(event.target.value)
-      console.log(name)
       /*
       if(name === 'myFirstName'){
-        console.log('set MyFirstName')
         setMyFirstName(event.target.value);
       }*/
       switch(name){
@@ -84,7 +77,6 @@ const BusinessDetailsClient = ({title, client, collectPayload, writeAccess}) => 
           setUpdatePayload({... updatePayload, gender:value})
           break
         default:
-          console.log('default')
       }
     }
 
