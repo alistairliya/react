@@ -55,19 +55,19 @@ const BusinessDetailsAdvisors = ({collectPayload, business, writeAccess, update}
             if(users.length === 0 && roles.length === 0 && collaboratorStatuses.length === 0){
                 const getUsers = async ()=>{
                     const theUsers = await fetchResource('users')
-                    setUsers(theUsers)
+                    setUsers(theUsers['results'])
                 }
                 const getRoles = async ()=>{
                     const theRoles = await fetchResource('businessuserrole')
-                    setRoles(theRoles)
+                    setRoles(theRoles['results'])
                 }
                 const getCollaboratorStatuses = async ()=>{
                     const theCollaboratorStatuses = await fetchResource('collaboratorstatus')
-                    setCollaboratorStatuses(theCollaboratorStatuses)
+                    setCollaboratorStatuses(theCollaboratorStatuses['results'])
                 }
                 const getCollaboratorPosition = async ()=>{
                     const theCollaboratorPositions = await fetchResource('collaboratorposition')
-                    setCollaboratorPositions(theCollaboratorPositions)
+                    setCollaboratorPositions(theCollaboratorPositions['results'])
                 }
                 getUsers()
                 getRoles()

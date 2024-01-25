@@ -27,13 +27,13 @@ const NBF8Advisor = ({
     //const [testString, setTestString]=useState("") 
     
 
-    const roleOptions = roles.map(
+    const roleOptions = roles.map( // roles
         (role)=>({
             value:role,
             label: role.user_role_name
         })
     )
-    const advisorOptions = users.map(
+    const advisorOptions = users.map( // users
         (user)=>({
             value:user,
             label: user.first_name.trim()!==''&&user.last_name.trim()!==''?user.first_name+' '+user.last_name: user.username
@@ -41,14 +41,14 @@ const NBF8Advisor = ({
         })
     )
 
-    const collaboratorStatusOptions = collaboratorStatuses.map(
+    const collaboratorStatusOptions = collaboratorStatuses.map( // collaboratorStatuses
         (collaboratorStatus)=>({
             value:collaboratorStatus,
             label: collaboratorStatus.status_name
         })
     )
 
-    const collaboratorPositionOptions = collaboratorPositions.map(
+    const collaboratorPositionOptions = collaboratorPositions.map( // collaboratorPositions
         (collaboratorPosition)=>({
             value:collaboratorPosition,
             label: collaboratorPosition.position_name
@@ -69,6 +69,7 @@ const NBF8Advisor = ({
     useEffect(()=>{
         force()
         console.log('3333333333333333333333333333333333 useEffect for NBF8Advisor ID: '+id)
+        console.log(roles)
         console.log('selectedAdvisors:')
         console.log(selectedAdvisors)
         let d = new Date()
@@ -125,9 +126,10 @@ const NBF8Advisor = ({
         }
         ///console.log(selectedAdvisors)
         //console.log(roleOptions)
-        console.log('useEffect, updated role and advisor:')
+        console.log(' )))))))))))))))))))))))))))))))))))))) useEffect, updated role and advisor:')
         console.log(role)
         console.log(advisor)
+        console.log(roles)
     })
   
     return (

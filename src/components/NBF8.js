@@ -21,7 +21,7 @@ const NBF8 = ({onNextClicked, setCollaborators}) => {
 
     useEffect(
         ()=>{
-            console.log('useEffect in NBF8')
+            console.log('))))))))))))))))))))))))) . useEffect in NBF8 (((((((((((((((')
             const fetchResource = async(resource)=>{
                 let headers = new Headers()
                 const token = user['token']
@@ -33,11 +33,14 @@ const NBF8 = ({onNextClicked, setCollaborators}) => {
                 return data
             }
             if(users.length === 0 && roles.length === 0 && collaboratorStatuses.length === 0){
+            console.log('))))))))))))))))))))))))) NBF8 gets stuffs (((((((((((((((')
                 const getUsers = async ()=>{
-                    const theUsers = await fetchResource('users')
+                    const theUsersResults = await fetchResource('users')
+                    const theUsers = theUsersResults['results']
                     setUsers(theUsers)
                 }
                 const getRoles = async ()=>{
+                    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> G E T . R O L E S <<<<<<<<<<<<<<<<<<<<<<<<<<')
                     const theRolesResults = await fetchResource('businessuserrole')
                     const theRoles = theRolesResults['results']
                     console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> R O L E S <<<<<<<<<<<<<<<<<<<<<<<<<<')
@@ -45,11 +48,13 @@ const NBF8 = ({onNextClicked, setCollaborators}) => {
                     setRoles(theRoles)
                 }
                 const getCollaboratorStatuses = async ()=>{
-                    const theCollaboratorStatuses = await fetchResource('collaboratorstatus')
+                    const theCollaboratorStatusesResults = await fetchResource('collaboratorstatus')
+                    const theCollaboratorStatuses = theCollaboratorStatusesResults['results']
                     setCollaboratorStatuses(theCollaboratorStatuses)
                 }
                 const getCollaboratorPositiono = async ()=>{
-                    const theCollaboratorPositions = await fetchResource('collaboratorposition')
+                    const theCollaboratorPositionsResults = await fetchResource('collaboratorposition')
+                    const theCollaboratorPositions = theCollaboratorPositionsResults['results'] 
                     setCollaboratorPositions(theCollaboratorPositions)
                 }
                 getUsers()
@@ -106,7 +111,8 @@ const NBF8 = ({onNextClicked, setCollaborators}) => {
             <h2>New Business Form: Advisor Information</h2>
             {Object.keys(advisors).map((key, index)=>{
                 //return <NBF8Advisor key={index} />
-                return (<div className='container'><NBF8Advisor key={key}  id={key} users={users} roles={roles} updateAdvisor = {updateAdvisor} selectedAdvisors = {advisors} collaboratorStatuses = {collaboratorStatuses} collaboratorPositions ={collaboratorPositions} /> <Button text='Remove' onClick={removevAdvisor(key)} /></div>)
+                //return (<div className='container'><NBF8Advisor key={key}  id={key} users={users} roles={roles} updateAdvisor = {updateAdvisor} selectedAdvisors = {advisors} collaboratorStatuses = {collaboratorStatuses} collaboratorPositions ={collaboratorPositions} /> <Button text='Remove' onClick={removevAdvisor(key)} /></div>)
+                return (<div className='container'>HI</div>)
             })}
             <Button 
                 text='Add Advisor' 
