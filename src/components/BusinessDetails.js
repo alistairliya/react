@@ -91,7 +91,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         getMyClient()
         getInsuredClient()
         getStatus()
-        //console.log("^^^ After calling getMyClient")
         setApplicantAddress(extractApplicantAddress())
         setApplicantPhone(extractApplicantPhone())
         setInsuredAddress(extractInsuredAddress())
@@ -122,7 +121,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
     }
 
     const test = async() =>{
-        //console.log("My Clinet: "+JSON.stringify(myClient))
         //refreshBusinesses()
     }
 
@@ -302,7 +300,6 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
         if(errors.length === 0 && updatedResult['business']){
             refreshMyBusiness()
             setUpdateCounter(updateCounter + 1)
-            console.log('no errors')
             setUpdateErrors(['Update successful'])
             alert('Update successful')
             setMyBusiness(updatedResult['business'])
