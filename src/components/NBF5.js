@@ -22,14 +22,12 @@ const NBF5 = ({setInsuranceInfo, onNextClicked}) => {
     const [insObj, setInsObj] = useState({})    
 
    useEffect(()=>{
-        console.log('NBF5')
         const fetchResource = async(resource) =>{
             let headers = new Headers()
             const token = user['token']
             const auth_str = 'Token '+token
             headers.set('Authorization', auth_str)
             let url = ROOT_URL+'/api/'+resource+'/'
-            console.log(url)
             const res = await fetch(url,{headers:headers})
             const data = await res.json()
             return data
@@ -38,18 +36,15 @@ const NBF5 = ({setInsuranceInfo, onNextClicked}) => {
         const getInsuranceProviders = async() =>{
             const insProvider = await fetchResource('insuranceprovider')
             setInsuranceProviders(insProvider)
-            console.log(insProvider)
         }
         const getInsurancePlanTypes = async() =>{
             const insPlanTypes = await fetchResource('insuranceplantype')
             setInsurancePlanTypes(insPlanTypes)
-            console.log(insPlanTypes)
         }
 
         const getInsurancePlans = async() =>{
             const insPlans = await fetchResource('insuranceplan')
             setInsurancePlans(insPlans)
-            console.log(insPlans)
         }
 
         getInsurancePlanTypes()
@@ -74,7 +69,6 @@ const NBF5 = ({setInsuranceInfo, onNextClicked}) => {
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log('onSubmit')
         setInsuranceInfo(insObj)
         onNextClicked()
     }

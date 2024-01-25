@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 const Child = ({trigger}) => {
     const log = () => {
-        console.log("call from parent...");
       };
     
       useEffect(() => {

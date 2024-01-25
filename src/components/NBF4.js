@@ -8,7 +8,6 @@ const NBF4 = ({onNextClicked, onPrevClicked,onCreateClicked, setApplicantPhones,
     const [trigger, setTrigger] = useState(0) // https://timmousk.com/blog/react-call-function-in-child-component/
     const [sameAsApplicant, setSameAsApplicant] = useState(true)
     useEffect(()=>{
-        console.log('useEffect in NBF4.js')
         setTrigger(0)
     },[setTrigger])
 
@@ -19,7 +18,6 @@ const NBF4 = ({onNextClicked, onPrevClicked,onCreateClicked, setApplicantPhones,
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log('Create pressed')
         setTrigger((trigger) => trigger + 1)
         //onNextClicked()
         //onCreateClicked()

@@ -31,48 +31,39 @@ const NewBusiness = ({onAdd, close}) => {
 
 
     const postToAPI = async (url, obj) => {
-        console.log('NBF10 Post to API '+url)
-        //console.log(url)
-        //console.log(obj)
+        
+        
         let headers = new Headers()
         const token = user['token']
-        console.log('TOKEN: '+token)
         const auth_str = 'Token '+token
         headers.set('Authorization', auth_str)
         headers.set('Content-Type', 'application/json')
-        //console.log("before fetch")
+        
         const strObj = JSON.stringify(obj)
-        //console.log("after sstringify")
-        //console.log("strObj: "+strObj)
+        
+        
         const res = await fetch(url,
             {
                 method:'POST',
                 body:strObj, //JSON.stringify(obj),
                 headers:headers
             })
-        console.log(res)
         const data = await res.json()
         return data
     }
 
     const onNextClicked = () => {
-        console.log("Clicked Next from index "+index)
         setIndex(index+1)
-        console.log(medicals)
     }
 
     const onPrevClicked = () => {
-        console.log("Clicked Prev from index "+index)
         setIndex(index-1)
     }
 
     const onCreateClicked = async () => {
-        console.log('onCreateClicked')
         const business = collect()
-        console.log(business)
         const url = ROOT_URL+'/api/newbusiness/create_insurance_application/'
         const result = await postToAPI(url, business)
-        console.log(result)
     }
 
     const collect = () => {
@@ -92,14 +83,12 @@ const NewBusiness = ({onAdd, close}) => {
     }
 
     useEffect(()=>{
-        console.log('useEffect in NewBusiness.js')
-        //console.log(applicantPhones)
-        //console.log(applicantAddress)
-        //console.log(applicantInsurance)
+        
+        
+        
         //if(applicantPhones!=null)
-        //    console.log(applicantPhones)
+        
         if(applicantInsurance!=null)
-            console.log(applicantInsurance)
 
     })
 

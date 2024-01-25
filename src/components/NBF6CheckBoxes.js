@@ -6,14 +6,12 @@ const NBF6CheckBoxes = ({id, item, collect}) => {
     const [checked, setChecked] = useState(false);
 
     const handleChange = (event) => {
-        console.log(event.target.checked)
         setChecked(event.target.checked);
         //collect()
         collect(id, {'name' : item.medical_name, 'selected': event.target.checked})
     };
 
   useEffect(()=>{
-    console.log('NBF6CheckBoxes useEffect')
    } ,[])
 
    const label = {}// { inputProps: { 'aria-label': 'controlled' } };

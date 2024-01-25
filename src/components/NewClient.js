@@ -13,20 +13,15 @@ const NewClient = ({client, onNextClicked, onPrevClicked, setClient, disabled}) 
   const [selectedGender, setSelectedGender] = useState()
 
   useEffect(()=>{
-    console.log('NewClient.js')
-    console.log('NewClinet onNextClicked:')
-    console.log(onNextClicked)
-    console.log(client)
-    console.log("selected gender "+ client.gender)
-    //console.log(onNextClicked)
-    //console.log(setClient)
+    
+    
     if(client.gender && client.gender === 'M'){
       setSelectedGender({value:'M', label:'Male'})
     }
     if(client.gender && client.gender === 'F'){
       setSelectedGender({value:'F', label:'Female'})
     }
-    //console.log(selectedGender)
+    
 
   },[])
 
@@ -37,7 +32,6 @@ const NewClient = ({client, onNextClicked, onPrevClicked, setClient, disabled}) 
   }
 
   const handleChange=(e)=>{
-    console.log(e)
     setGender(e.value)
     if(e.value === 'M')
         setSelectedGender({value:'M', label:'Male'})

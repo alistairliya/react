@@ -15,7 +15,6 @@ const BusinessDetailsDecline = ({setDeclinePopup, setApprovalButtonDisabled, dec
 
 
     const handleDecline = () => {
-        console.log('handleDecline')
         // submit to API
         setDeclinePopup(false)
         declineConfirmed(reason)
@@ -23,8 +22,6 @@ const BusinessDetailsDecline = ({setDeclinePopup, setApprovalButtonDisabled, dec
     }
 
     const handleReasonChange = (e) => {
-        console.log('handleReasonChange')
-        console.log(e.target.value)
         //const { name, value } = e.target
         setReason(e.target.value)
     }

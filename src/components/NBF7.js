@@ -11,7 +11,6 @@ const NBF7 = ({onNextClicked, setDocuments}) => {
     const { user } = useAuth()
 
     useEffect(()=>{
-        console.log('NBF7 useEffect')
         const fetchResource = async (resource) =>{
             let headers = new Headers()
             const token = user['token']
@@ -21,19 +20,15 @@ const NBF7 = ({onNextClicked, setDocuments}) => {
             const res = await fetch(url,{headers:headers})
             const data = await res.json()
             setAvailableDocuments(data)
-            console.log(data)
             return data
         }
         if (availableDocuments.length === 0){
-            console.log('fetching documents')
             fetchResource('document') 
         }
     },[user,availableDocuments])
 
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log('NBF6 Next pressed')
-        console.log(JSON.stringify(selectedDocuments))
         setDocuments(selectedDocuments)
         onNextClicked()
     }
@@ -42,7 +37,6 @@ const NBF7 = ({onNextClicked, setDocuments}) => {
         // [] inside your object definition to specify a property with dynamic name.
         // https://react.dev/learn/updating-objects-in-state
         setSelectedDocuments({...selectedDocuments, [key]: value})
-        console.log(JSON.stringify(selectedDocuments))
     }
 
   return (

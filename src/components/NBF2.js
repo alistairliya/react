@@ -11,14 +11,8 @@ const NBF2 = ({client,setClient, onNextClicked, onPrevClicked, forInsured=false}
 
     const { user } = useAuth()
     useEffect(()=>{
-        console.log('NBF2')
-        console.log('NBF2 onNextClicked:')
-        console.log(onNextClicked)
-        console.log(client)
         const getClients = async() =>{
-            console.log(client)
             const possibleClients = await fetchClient(client.search_first_name, client.search_last_name)
-            console.log(possibleClients)
             setClients(possibleClients)
         }
         getClients()
@@ -27,9 +21,7 @@ const NBF2 = ({client,setClient, onNextClicked, onPrevClicked, forInsured=false}
     const fetchClient = async(first_name, last_name) =>{
         let headers = new Headers()
         const token = user['token']
-        console.log('First: '+first_name)
         const auth_str = 'Token '+token
-        console.log(auth_str)
         headers.set('Authorization', auth_str)
         let url = ROOT_URL+'/api/clients/'
         if(first_name!==''){
@@ -43,7 +35,6 @@ const NBF2 = ({client,setClient, onNextClicked, onPrevClicked, forInsured=false}
             }
             url = url + 'last_name='+last_name
         }
-        console.log(url)
         const res = await fetch(url,{headers:headers})
         const data = await res.json()
         return data

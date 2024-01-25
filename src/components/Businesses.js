@@ -9,7 +9,6 @@ const Businesses = ({businesses, onEdit, onToggle, showDeclined = true}) => {
   const [showDeclinedOnly, setShowDeclinedOnly] = useState(false)
 
   useEffect(()=>{
-    console.log('useEffect for Businesses')
     //setShowDeclinedOnly(showDeclined)
   },[])
 

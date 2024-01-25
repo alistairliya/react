@@ -23,11 +23,8 @@ const Phones = ({setApplicantPhones,  existingPhones}) => {
     /*
     // Not used now. May need it in the future.
     const removePhoneElement = (phoneElement) =>{
-        console.log('removePhoneElement')
-        console.log(phoneElement)
-        console.log(phoneElementList)
         //const newArray = phoneElementList.filter((element)=>element!==phoneElement)
-        //console.log(newArray)
+        
         //setPhoneElementList(newArray)
         //setPhoneElementList(phoneElementList.filter((element)=>element!==phoneElement))
         //setPhoneElementList(old => old.filter((element)=>element!==phoneElement))
@@ -36,7 +33,6 @@ const Phones = ({setApplicantPhones,  existingPhones}) => {
     const addAnotherPhone = ()=>{
         let phoneObj = {}
         setPhoneElementList(old => [...old, <Phone phoneObj={phoneObj} key={key} id={key.toString()}   existingPhones = {existingPhones} phoneTypes={phoneTypes} />])
-        console.log(phoneElementList)
         setPhonesObjs(old => [...old, phoneObj])
         setKey(key+1)
     }
@@ -52,20 +48,16 @@ const Phones = ({setApplicantPhones,  existingPhones}) => {
             const data = await res.json()
             //setPhoneElementList([<Phone key='x' addPhone = {addPhone} existingPhones = {existingPhones} phoneTypes={data}/>])
             return data
-        } 
-        console.log('useEffect 1 in NBF4Phones.js')
+        }
         const getPhoneTypes = async () =>{
             const thePhoneTypes = await fetchPhoneTypes()
             setPhoneTypes(thePhoneTypes)
             // set the first phone element
             if(phoneElementList.length === 0 && phoneObjs.length === 0){
-                console.log('Adding the first phoneObj to phoneObjs')
                 let phoneObj = {}
                 setPhoneElementList([<Phone phoneObj = {phoneObj} key='x'  id='x'   existingPhones = {existingPhones} phoneTypes={thePhoneTypes} isPrimary = {true}/>])
                 setPhonesObjs([phoneObj])
             }else{
-                console.log('phoneObjs: ')
-                console.log(phoneObjs)
                 // When the user clicks on Next button.
                 setApplicantPhones(phoneObjs)
             }
@@ -75,7 +67,6 @@ const Phones = ({setApplicantPhones,  existingPhones}) => {
     },[ phoneElementList, existingPhones,user, phoneObjs, setApplicantPhones])
 
     useEffect(()=>{
-        console.log('useEffect 2 in NBF4Phones.js')
     },[key, phoneElementList])
 
     return (

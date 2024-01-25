@@ -11,20 +11,17 @@ const NBF7Doc = ({id, item, collect}) => {
     const [checked, setChecked] = useState(false);
     const [notes,  setNotes] = useState('');
     const handleChange = (event) => {
-        console.log(event.target.checked)
         setChecked(event.target.checked);
         //collect()
         collect(id, {'name' : item.document_name, 'selected': event.target.checked, 'notes': notes})
     };
 
     const handleTextAreaChange = (event) => {
-        console.log(event.target.value)
         setNotes(event.target.value);
         //collect()
         collect(id, {'name' : item.document_name, 'selected':checked, 'notes': event.target.value})
     }
     useEffect(()=>{
-        console.log('NBF7Doc useEffect: '+id)
     } ,[id])
 
     const label = {}

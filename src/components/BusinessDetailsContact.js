@@ -20,40 +20,29 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
     const [updatePayload, setUpdatePayload] = useState({})
 
     useEffect(()=>{
-        console.log('22222222222222222222 BusinessDetailsContact useEffect()')
-        console.log(address)
-        console.log(phone)
 
         const getAddress = async () => {
-            console.log('inside getAddress')
             let a = await fetchObject(address)
-            console.log("got address!")
-            console.log(a)
             a.province_state = await fetchObject(a.province_state)
             a.country = await fetchObject(a.country)
-            //console.log(a)
+            
             return a
         }
         const getPhone = async () => {
-            console.log('inside getPhone')
             let p = await fetchObject(phone)
-            console.log("got phone!")
-            console.log(p)
             return p
         }
 
         const getAvailableCountries = async () => {
-            console.log('inside getAvailableCountries')
             const url = ROOT_URL+'/api/country/'
             let countriesResults = await fetchObject(url)
             let countries = countriesResults['results']
-            //console.log("got countries!")
-            //console.log(countries)
+            
+            
             return countries
         }
 
         const getAvailableProvinces = async () => {
-            console.log('inside getAvailableProvinces')
             const url = ROOT_URL+'/api/province_state/'
             let provincesResults = await fetchObject(url)
             const provinces = provincesResults['results']
@@ -62,35 +51,23 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
 
         if(!editMode){
         getAddress().then((a)=>{
-            console.log('setting MyAddress')
             setMyAddress(a)
-            console.log(a)
-            //console.log('after set MyAddress')
+            
         })
         getPhone().then((p)=>{
-            console.log('setting MyPhone')
             setMyPhone(p)
-            console.log(p)
-            //console.log('after set MyPhone')
+            
         })
         getAvailableCountries().then((c)=>{
-            console.log('setting Countries')
             setCountries(c)
-            console.log(c)
-            console.log('after set Countries')
         })
 
         getAvailableProvinces().then((p)=>{
-            console.log('setting Provinces')
             setProvinces(p)
-            console.log(p)
-            console.log('after set Provinces')
         })
       }
         if(editMode){
-          console.log('EDIT MODE')
           setBackgroundColor('lightblue')
-          console.log(updatePayload)
           collectPayload('contact', {...updatePayload, phone_id:myPhone.id, address_id:myAddress.id})
         }
 
@@ -107,12 +84,8 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
     }
 
     const handleChange = (event) => {
-      console.log(event)
       setEditMode(true)
       const { name, value } = event.target
-      console.log('handleChange')
-      console.log(event.target.value)
-      console.log(name)
 
       switch(name){
         case 'myStreetAddress':
@@ -124,7 +97,6 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
           setUpdatePayload({...updatePayload, unit:value})
           break
         case 'myCity':
-          console.log('update to'+value)
           setMyAddress({...myAddress, city:value})
           setUpdatePayload({...updatePayload, city:value})
           break
@@ -137,7 +109,6 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
           setUpdatePayload({...updatePayload, country_id:value})
           break
         case 'myAreaCode':
-          console.log('update area code to'+value)
           setMyPhone({...myPhone, area_code:value})
           setUpdatePayload({...updatePayload, area_code:value}) 
           break

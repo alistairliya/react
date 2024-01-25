@@ -12,7 +12,6 @@ const NBF6 = ({onNextClicked, setMedicals}) => {
     const [availableMedicals, setAvailableMedicals] = useState([])
     const [selectedMedicals, setSelectedMedicals] = useState({})
     useEffect(()=>{
-        console.log('NBF6 useEffect')
         // Get the available medical exams
         const fetchResource = async (resource) =>{
             let headers = new Headers()
@@ -26,12 +25,9 @@ const NBF6 = ({onNextClicked, setMedicals}) => {
             return data
         }
         if (availableMedicals.length === 0){
-            console.log('fetching medicals')
             fetchResource('medical')
             
         }
-        console.log('NBF6 useEffect availableMedicals:')
-        console.log(availableMedicals)
     },[availableMedicals, user])
 
     const collect = (key, value) =>{
@@ -41,8 +37,6 @@ const NBF6 = ({onNextClicked, setMedicals}) => {
     }
     const onSubmit = (e) =>{
         e.preventDefault()
-        console.log('NBF6 Next pressed')
-        console.log(JSON.stringify(selectedMedicals))
         setMedicals(selectedMedicals)
         onNextClicked()
     }

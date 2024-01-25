@@ -8,20 +8,17 @@ const NBF9Comp = ({id, item, collect}) => {
     const [checked, setChecked] = useState(false);
     const [notes,  setNotes] = useState('');
     const handleChange = (event) => {
-        console.log(event.target.checked)
         setChecked(event.target.checked);
         //collect()
         collect(id, {'id':id,  'name' : item.compliance_entity_name, 'selected': event.target.checked, 'notes': notes})
     };
 
     const handleTextAreaChange = (event) => {
-        console.log(event.target.value)
         setNotes(event.target.value);
         //collect()
         collect(id, {'name' : item.compliance_entity_name, 'selected':checked, 'notes': event.target.value})
     }
     useEffect(()=>{
-        console.log('NBF9Comp useEffect: '+id)
     } ,[id])
 
     const label = {}

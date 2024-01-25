@@ -13,7 +13,6 @@ const BusinessDetailsPolicyDelivery = ({business, refreshBusinesses, getStatus, 
             alert('Only the onwer or supervisor can SUBMIT')
             return
         }
-        console.log('submitForReview')
         const url = ROOT_URL+'/api/editbusiness/update_status/' 
         const token = user['token']
         const auth_str = 'Token '+token
@@ -35,7 +34,6 @@ const BusinessDetailsPolicyDelivery = ({business, refreshBusinesses, getStatus, 
         }
         const errors = updatedResult['errors']
         if(errors.length === 0){
-            console.log('no errors')
             alert('Update successful')
         }
     }

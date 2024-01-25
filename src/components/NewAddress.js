@@ -37,7 +37,6 @@ const NewAddress = ({onNextClicked, onPrevClicked, setAddress}) => {
   }
 
     const fetchSomeList = async(what) =>{
-        console.log('start fetchSomeList')
         let headers = new Headers()
         const token = user['token']
         const auth_str = 'Token '+token
@@ -45,7 +44,6 @@ const NewAddress = ({onNextClicked, onPrevClicked, setAddress}) => {
         let url = ROOT_URL+'/api/'+what+'/'
         const res = await fetch(url, {headers:headers})
         const data = await res.json()
-        console.log('done fetchSomeList')
         return data
 
     }
@@ -53,8 +51,6 @@ const NewAddress = ({onNextClicked, onPrevClicked, setAddress}) => {
     useEffect(()=>{
         const getCountryList = async () =>{
             const theCountryList = await fetchSomeList('country')
-            console.log("The Country List:")
-            console.log(theCountryList)
             setCountryOptions(
                 theCountryList.map(
                     (country)=>(
@@ -66,8 +62,6 @@ const NewAddress = ({onNextClicked, onPrevClicked, setAddress}) => {
                     
                 )
             )
-            console.log("The country options:")
-            console.log(countryOptions)
         }
         const getProvinceList = async () => {
             const theProvinceList = await fetchSomeList('province_state')

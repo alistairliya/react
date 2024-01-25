@@ -24,23 +24,15 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
     const [updatePayload, setUpdatePayload] = useState({})
 
     useEffect(()=>{
-        console.log('22222222222222222222222222222222222 BusinessDetailsInsurance useEffect()')
         if(!editMode){
-        console.log(insurance)
         const getPlan = async () => {
-            console.log('inside getPlan')
-            console.log(insurance)
             const plan = await fetchObject(insurance.plan)
             const type = await fetchObject(insurance.plan_type)
             const provider = await fetchObject(insurance.provider)
-            console.log("got plan")
-            console.log(insurance)
             setMyInsurance(insurance)
             setMyPlan(plan)
             setMyPlanType(type)
             setMyProvider(provider)
-            console.log('PROVIDER:')
-            console.log(provider)
         }
 
         const getAvailablePlans = async () => {
@@ -69,34 +61,22 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
 
 
         getPlan().then((p)=>{
-                console.log("myInsurance, myPlan, myPlanType")
-                console.log(myInsurance)
-                console.log(myPlan)
-                console.log(myPlanType)
             }
         )
 
         getAvailablePlans().then((p)=>{
-                console.log("plans")
-                console.log(p)
                 setPlans(p)
             }   )
         getAvailablePlanTypes().then((p)=>{
-                console.log("planTypes")
-                console.log(p)
                 setPlanTypes(p)
             })
         getAvailableProviders().then((p)=>{
-                console.log("providers")
-                console.log(p)
                 setProviders(p)
             })
         }
         
         if(editMode){
-          console.log('EDIT MODE')
           setBackgroundColor('lightblue')
-          console.log(updatePayload)
           collectPayload('insuranceapplication', {...updatePayload, id:insurance.id})
         }
     }, [insurance, editMode, updatePayload])
@@ -113,42 +93,27 @@ const BusinessDetailsInsurance = ({insurance, collectPayload ,writeAccess}) => {
 
     const handleChange = (event) => {
         setEditMode(true)
-        console.log("handleChange => " + event.target.name)
         let { name, value } = event.target
         switch(name){
             case 'myProvider':
-                console.log('########## handleChange => myProvider')
-                console.log(value)
-                console.log(myProvider)
                 setMyProvider({...myProvider, id:value})
                 setUpdatePayload({...updatePayload, provider:value})
             break
             case 'myPlan':
-                console.log('########## handleChange => myPlan')
-                console.log(value)
-                console.log(myPlan)
                 setMyPlan({...myPlan, id:value})
                 setUpdatePayload({...updatePayload, plan:value})
                 break
             case 'myPlanType':
-                console.log('########## handleChange => myPlanType')
-                console.log(value)
-                console.log(myPlanType)
                 setMyPlanType({...myPlanType, id:value})
                 setUpdatePayload({...updatePayload, plan_type:value})
                 break
             case 'FaceAmount':
-                console.log('########## handleChange => FaceAmount')
-                console.log(value)
-                console.log(myInsurance)
                 if(value.charAt(0)=== '$')
                     value = value.substring(1)
                 setMyInsurance({...myInsurance, face_amount:value})
                 setUpdatePayload({...updatePayload, face_amount:value})
                 break
             case 'PlannedPremium':
-                console.log('########## handleChange => PlannedPremium')
-                console.log(value)
 
                 if(value.charAt(0)=== '$'){
                     value = value.substring(1)

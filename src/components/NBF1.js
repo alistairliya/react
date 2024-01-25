@@ -27,7 +27,6 @@ const NBF1 = ({onAdd, setClient, onNextClicked, onPrevClicked, forInsured=false}
 
     const previousClicked = (e) =>{
         e.preventDefault()
-        console.log('previousClicked')
         onPrevClicked()
       }
 

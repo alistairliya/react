@@ -20,7 +20,6 @@ const Clients = ({clients, client, setClient, onNextClicked, onPrevClicked}) => 
         setChecked(!checked)
     }
     const buttonClicked = ()=>{
-        console.log(clientId)
         
         //setClient({clientId:clientId})
         onNextClicked()
@@ -37,8 +36,6 @@ const Clients = ({clients, client, setClient, onNextClicked, onPrevClicked}) => 
     }
 
     const handleSelection = (selected)=>{
-        console.log('handleSelection')
-        console.log(selected)
         setClientId(selected.value)
         let value = selected.value
         value.search_first_name = client.search_first_name

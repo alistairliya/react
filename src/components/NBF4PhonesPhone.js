@@ -8,8 +8,6 @@ const Phone = ({phoneObj, id,  existingPhones, phoneTypes, isPrimary=false}) => 
     const [phoneNumber, setPhoneNumber] = useState('')
     // Adding phone to application when NEXT is pressed in grand parent.
     useEffect(()=>{
-        console.log('useEffect for NBF4PhonesPhone ID: '+id)
-        console.log(phoneTypes)
     })
 
 
@@ -44,10 +42,8 @@ const Phone = ({phoneObj, id,  existingPhones, phoneTypes, isPrimary=false}) => 
     }
 
     const handleSelection = (selected)=>{
-        console.log('handleSelection')
         //setPhoneObj(selected.value)
         phoneObj['selection'] = selected.value
-        console.log(phoneObj)
 
         // clear out other fields
         phoneObj['area_code'] = null
@@ -70,8 +66,6 @@ const Phone = ({phoneObj, id,  existingPhones, phoneTypes, isPrimary=false}) => 
 /*
     // Not being used right now, but may need it later
     const removeMe = ()=>{
-        console.log('removeMe')
-        console.log(this)
         removeFromElementList(this) // function passed in as parameter
     }
 */

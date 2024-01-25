@@ -10,15 +10,9 @@ const NBF3 = ({onNextClicked, onPrevClicked, client, setApplicantAddress, forIns
   const [checked, setChecked] = useState(false)
 
   useEffect(()=>{
-    console.log('NBF3...')
-    //console.log(setApplicantAddress)
-    console.log('NBF3 onNextClicked')
-    console.log(onNextClicked)
-    console.log(existingAddresses)
+    
     //if(client.client_addresses != null && client.client_addresses.length>0){
     if(existingAddresses && existingAddresses.length > 0){
-      console.log('Existing client with existing addresses:')
-      console.log(existingAddresses)
     }
   })
 

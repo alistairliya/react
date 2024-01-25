@@ -59,7 +59,6 @@ const NBF8Advisor = ({
         let headers = new Headers()
         const token = user['token']
         const auth_str = 'Token '+token
-        console.log(auth_str)
         headers.set('Authorization', auth_str)
         const res = await fetch(resourceURL, {headers:headers})
         const data = await res.json()
@@ -68,26 +67,17 @@ const NBF8Advisor = ({
 
     useEffect(()=>{
         force()
-        console.log('3333333333333333333333333333333333 useEffect for NBF8Advisor ID: '+id)
-        console.log(roles)
-        console.log('selectedAdvisors:')
-        console.log(selectedAdvisors)
         let d = new Date()
         // setTestString(testString + "..." + d.getMinutes() +":"+  d.getSeconds())
         if(selectedAdvisors[id]){
-            console.log('selectedAdvisors[id]')
-            console.log(selectedAdvisors[id])
             if(selectedAdvisors[id].id){
                 // this is the businessuser object's "id" so that we can later pass into backend for updating existing businessuser object.
                 setBusinessUserID(selectedAdvisors[id].id)
             }
             if(selectedAdvisors[id].user_role && !role ){
-                console.log(selectedAdvisors[id].user_role)
                 const getRole = async()=>{
                     const theRole = await fetchResource(selectedAdvisors[id].user_role)
                     await setRole(theRole)
-                    console.log("<<<<<<<<<<<<<<< ROLE <<<<<<<<<<<<<<<")
-                    console.log(role)
                 }
                 getRole()
             } 
@@ -95,17 +85,13 @@ const NBF8Advisor = ({
                 const getAdvisor = async ()=>{
                     const theUser = await fetchResource(selectedAdvisors[id].user)
                     await setAdvisor(theUser)
-                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Loaded Advisor")
-                    console.log(JSON.stringify(theUser))
                 }
-                //console.log('selectedAdvisors[id].advisor')
-                //console.log(selectedAdvisors[id].advisor)
+                
+                
                 //setAdvisor(selectedAdvisors[id].advisor)
                 getAdvisor()
             }
             if(selectedAdvisors[id].collaborator_status && !collaboratorStatus){
-                console.log('selectedAdvisors[id].collaborator_status')
-                console.log(selectedAdvisors[id].collaborator_status)
                 //setCollaboratorStatus(selectedAdvisors[id].collaboratorStatus)
                 const getStatus = async () =>{
                     const theStatus = await fetchResource(selectedAdvisors[id].collaborator_status)
@@ -114,8 +100,6 @@ const NBF8Advisor = ({
                 getStatus()
             }
             if(selectedAdvisors[id].collaborator_position && !collaboratorPosition){
-                console.log('selectedAdvisors[id].collaborator_position')
-                console.log(selectedAdvisors[id].collaborator_position)
                 //setCollaboratorPosition(selectedAdvisors[id].collaboratorPosition)
                 const getPos = async () => {
                     const thePos = await fetchResource(selectedAdvisors[id].collaborator_position)
@@ -124,12 +108,6 @@ const NBF8Advisor = ({
                 getPos()
             }
         }
-        ///console.log(selectedAdvisors)
-        //console.log(roleOptions)
-        console.log(' )))))))))))))))))))))))))))))))))))))) useEffect, updated role and advisor:')
-        console.log(role)
-        console.log(advisor)
-        console.log(roles)
     })
   
     return (
@@ -155,8 +133,6 @@ const NBF8Advisor = ({
                     }//'Select Advisor'
                         
                     onChange={(selectedOption)=>{
-                        console.log('selectedOption')
-                        console.log(selectedOption)
                         setAdvisor(selectedOption.value)
                         updateAdvisor(id, {id: businessUserID, advisor: selectedOption.value, role: role, cfcCode: cfcCode, collaboratorStatus: collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split})
                     }
@@ -171,8 +147,6 @@ const NBF8Advisor = ({
                     type="text"
                     placeholder={selectedAdvisors[id] && selectedAdvisors[id].cfc_code? selectedAdvisors[id].cfc_code:'Enter CFC Code'}
                     onChange = {(e)=>{
-                        console.log('e.target.value')
-                        console.log(e.target.value)
                         setCfcCode(e.target.value)
                         updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode: e.target.value,collaboratorStatus:collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split })
                     }}
@@ -184,8 +158,6 @@ const NBF8Advisor = ({
                     options={roleOptions}
                     placeholder={role && role.user_role_name? role.user_role_name:'Role'}
                     onChange={(selectedOption)=>{
-                        console.log('selectedOption')
-                        console.log(selectedOption)
                         setRole(selectedOption.value)
                         updateAdvisor(id, {id: businessUserID, advisor: advisor,role: selectedOption.value, fcfCode: cfcCode, collaboratorStatus: collaboratorStatus, collaboratorPosition: collaboratorPosition, split:split})
                         
@@ -202,8 +174,6 @@ const NBF8Advisor = ({
                     placeholder={collaboratorPosition && collaboratorPosition.position_name? collaboratorPosition.position_name:'Position'} 
                     onChange={
                         (selectedOption)=>{
-                            console.log('selectedOption')
-                            console.log(selectedOption)
                             setCollaboratorPosition(selectedOption.value)
                             updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode:cfcCode, colaboratorStatus:collaboratorStatus, collaboratorPosition: selectedOption.value, split:split})
                         }
@@ -218,8 +188,6 @@ const NBF8Advisor = ({
                     placeholder={ collaboratorStatus && collaboratorStatus.status_name? collaboratorStatus.status_name:'Status'}
                     onChange={
                         (selectedOption)=>{
-                            console.log('selectedOption')
-                            console.log(selectedOption)
                             setCollaboratorStatus(selectedOption.value)
                             updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode:cfcCode, collaboratorStatus: selectedOption.value, collaboratorPosition: collaboratorPosition, split:split})
                         }
@@ -233,8 +201,6 @@ const NBF8Advisor = ({
                     disabled={!writeAccess}
                     placeholder={selectedAdvisors[id] && selectedAdvisors[id].split? selectedAdvisors[id].split:'Enter Split'}
                     onChange = {(e)=>{
-                        console.log('e.target.value')
-                        console.log(e.target.value)
                         setSplit(e.target.value)
                         updateAdvisor(id, {id: businessUserID, advisor: advisor, role: role, cfcCode: cfcCode,collaboratorStatus:collaboratorStatus, collaboratorPosition: collaboratorPosition, split: e.target.value })
                     }}

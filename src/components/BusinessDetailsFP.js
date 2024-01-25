@@ -18,14 +18,12 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
         const token = user['token']
         const auth_str = 'Token '+token
         headers.set('Authorization', auth_str)
-        const url = ROOT_URL+'/api/'+resource+'/' 
-        console.log('fetchFromAPI() url: '+url)
+        const url = ROOT_URL+'/api/'+resource+'/'
         const res = await fetch(url, {headers:headers})
         const data = await res.json()
         return data
     }
         const getFileData = async () =>{
-            console.log('BusinessDetailsFP -> getFileData()')
             let resource = ""
             if(forApproval){
                 resource = 'businessapproval/'+business.id              
@@ -35,28 +33,17 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
 
             const businessData = await fetchFromAPI(resource)
             const fileData = businessData['files']
-            console.log('File Data: ')
-            console.log(fileData)
             setFileData(fileData)
             business.files = fileData
         }
 
     useEffect(()=>{
-        console.log('22222222222222222222 BusinessDetailsFP useEffect()')
-        console.log('refreshBusinesses')
-        console.log(docName)
-        console.log(business)
-        console.log(fileData)
-        console.log(business.files)
         setFileIndex(-1)
 
         //getFileData()
         setFileData(business.files)
         for(let i=0; i<business.files.length; i++){
-            console.log('for: '+i)
-            console.log(business.files[i])
             if(business.files[i].remark === docName){
-                console.log('set index to '+ i)
                 setFileIndex(i)
             }
         }
@@ -75,7 +62,6 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
             setFile(null)
             return
         }else if(files){
-            console.log('setting file')
             setFile(files[0])
         }
     }
@@ -87,9 +73,7 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
             
             let headers = new Headers()
             const token = user['token']
-            console.log('TOKEN: '+token)
             const auth_str = 'Token '+token
-            console.log('auth_str: '+auth_str)
             headers.set('Authorization', auth_str)
             //headers.set('Content-Type', 'application/json')
             const formData = new FormData()
@@ -103,24 +87,20 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
                 headers: headers
             })
             const data = await res.json()
-            console.log(data)
             return data
         }
         setFileUploadResult('Uploading...')
         const uploadResult = await postToFileUpload()
         if(uploadResult['id']){
-            console.log('uploadResult id is '+uploadResult['id'])
             setFileUploadResult('Upload Success')
             getFileData()
             fileInputRef.current.value = ''
-            console.log(refreshBusinesses)
             setFile(null)
             refreshBusinesses()
         } 
     }
 
     const showFileDetails = () =>{
-        console.log('fileIndex: '+ fileIndex)
         //const original_filename = fileData[fileData.length - 1].original_filename
         const original_filename = fileData[fileIndex].original_filename
         //const utcString = fileData[fileData.length - 1].timestamp
@@ -130,7 +110,6 @@ const BusinessDetailsFP = ({docName, business, refreshBusinesses, forApproval=fa
         //const url = fileData[fileData.length - 1].file
         const url = fileData[fileIndex].file
         const viewFP = () =>{
-            console.log("viewFP()")
             window.open(url, '_blank', 'fullscreen=yes')
         }
         const result = 
