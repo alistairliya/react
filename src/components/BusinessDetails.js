@@ -79,6 +79,7 @@ const BusinessDetails = ({business, closeComponent, refreshBusinesses, forApprov
 
 
     useEffect(()=>{
+        console.log("BusinessDetails.js useEffect->")
         setMyBusiness(business)
         // is user staff?
         setHasWriteAccess(false)

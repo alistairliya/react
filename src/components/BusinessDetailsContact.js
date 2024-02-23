@@ -20,6 +20,7 @@ const BusinessDetailsContact = ({title, address, phone, collectPayload, writeAcc
     const [updatePayload, setUpdatePayload] = useState({})
 
     useEffect(()=>{
+      console.log("  BusinessDetailsContact.js useEffect->")
 
         const getAddress = async () => {
             let a = await fetchObject(address)
